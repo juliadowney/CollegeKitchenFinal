@@ -30,6 +30,7 @@ class ViewController: UIViewController {
         tache.resume()
     }
     
+    /*
     func convertAmounts(ingredientName: String, sourceAmount: Double, sourceUnit: String, targetUnit: String){
         let mainUrl = "https://spoonacular-recipe-food-nutrition-v1.p.mashape.com/recipes/convert?"
         let ingredientNameUrl = "ingredientName=" + ingredientName
@@ -167,16 +168,16 @@ class ViewController: UIViewController {
         }
         tache.resume()
     }
-
+*/
     
     override func viewDidLoad() {
         super.viewDidLoad()
-//        getIngredientSearch(query: "appl")
+   getIngredientSearch(query: "appl")
 //        convertAmounts(ingredientName: "flour", sourceAmount: 2.5, sourceUnit: "cups", targetUnit: "grams")
 //        getEstimatedCost(id: 9266, amount: 100, unit: "gram")
 //        parseIngredient(ingredientName: "apple", servings: 2)
 //        getRecipesByIngredients(fillIngredients: false, ingredients: ["apples", "flour", "sugar"], limitLicense: false, number: 5, ranking: 1)
-        getRecipeDetails(id: 479101)
+        //getRecipeDetails(id: 479101)
         
         // Do any additional setup after loading the view, typically from a nib.
     }
