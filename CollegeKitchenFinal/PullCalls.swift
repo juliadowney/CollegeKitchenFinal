@@ -10,8 +10,11 @@ import UIKit
 import Foundation
 
 class PullCalls {
+    
+    
+    // INGREDIENT SEARCH
     typealias SearchResult = ([IngredientSearch]) -> ()
-
+    
     func ingredientSearch(query: String, completion: @escaping SearchResult){
         var searchIngredients:[IngredientSearch] = []
         let urlString = "https://spoonacular-recipe-food-nutrition-v1.p.mashape.com/food/ingredients/autocomplete?query=" + query
@@ -23,19 +26,14 @@ class PullCalls {
         print(2)
         let tache = session.dataTask(with: request as URLRequest) { (data, response, error) -> Void in
             if let jsonData = data {
-                print(3)
+              
                 let json = JSONDecoder()
                 let search = try! json.decode([IngredientSearch].self, from: jsonData)
-                //print(search)
-                print (4)
+              
                 for ingredient in search{
-                    print(5)
-                    print(ingredient)
-                  //  let addIngredient:IngredientSearch = IngredientSearch(name: "cucumber", image: "budget")
-                    // print (addIngredient)
+               
                     searchIngredients.append(ingredient)
-                    //print("added?")
-                    //print(self.searchIngredients)
+                   
                     DispatchQueue.main.async {
                        completion(searchIngredients)
                     }
@@ -43,12 +41,11 @@ class PullCalls {
                 }
                 
             }
-            print(6)
+            
         }
         session.finishTasksAndInvalidate()
-        print(2)
         tache.resume()
-        print(2)
+        
         
     }
 }
