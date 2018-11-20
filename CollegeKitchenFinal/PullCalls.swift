@@ -9,7 +9,7 @@
 import UIKit
 import Foundation
 
-class Functions {
+class PullCalls {
     typealias SearchResult = ([IngredientSearch]) -> ()
 
     func ingredientSearch(query: String, completion: @escaping SearchResult){

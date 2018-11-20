@@ -170,20 +170,97 @@
                                             </subviews>
                                         </tableViewCellContentView>
                                         <connections>
-                                            <outlet property="image" destination="btV-tc-tTX" id="zFT-D3-nDy"/>
                                             <outlet property="label" destination="eiL-S9-g5q" id="66N-i0-xg7"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
+                            <view alpha="0.65000000000000002" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="kia-Qr-x9X" userLabel="BackgroundView">
+                                <rect key="frame" x="0.0" y="64" width="375" height="554"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </view>
+                            <pickerView contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="BlQ-PB-QrQ">
+                                <rect key="frame" x="0.0" y="417" width="375" height="203"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </pickerView>
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="jKD-dN-LKD">
+                                <rect key="frame" x="34" y="165" width="302" height="206"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Quantity" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rtm-07-a88">
+                                        <rect key="frame" x="26" y="56" width="73" height="23"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="19"/>
+                                        <color key="textColor" red="0.077840521584521191" green="0.1487843165775892" blue="0.56406646573604058" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Unit" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lAx-f5-8gc">
+                                        <rect key="frame" x="237" y="56" width="35" height="23"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="19"/>
+                                        <color key="textColor" red="0.077840521584521191" green="0.1487843165775892" blue="0.56406646573604058" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Yne-BG-5TG">
+                                        <rect key="frame" x="35" y="85" width="54" height="30"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <nil key="textColor"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits" keyboardType="decimalPad"/>
+                                        <connections>
+                                            <action selector="editingQuantity:" destination="24p-eN-8Lf" eventType="editingDidBegin" id="ncc-Yq-7mU"/>
+                                        </connections>
+                                    </textField>
+                                    <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" enabled="NO" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="nJ7-Vv-fAR">
+                                        <rect key="frame" x="224" y="85" width="61" height="30"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <nil key="textColor"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits"/>
+                                    </textField>
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cu7-Vy-1QT">
+                                        <rect key="frame" x="171" y="85" width="44" height="30"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <state key="normal" title="Select"/>
+                                        <connections>
+                                            <action selector="selectUnit:" destination="24p-eN-8Lf" eventType="touchUpInside" id="xqA-5I-6N1"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dAl-Nd-n06">
+                                        <rect key="frame" x="94" y="150" width="136" height="36"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <color key="backgroundColor" red="0.9310755076142132" green="0.29488101653244619" blue="0.1964949797603468" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                        <state key="normal" title="Add Item">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        </state>
+                                    </button>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cvM-id-3Yi">
+                                        <rect key="frame" x="0.0" y="8" width="302" height="40"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="19"/>
+                                        <color key="textColor" red="0.077840521584521191" green="0.1487843165775892" blue="0.56406646573604058" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <viewLayoutGuide key="safeArea" id="Lpg-fV-yP6"/>
                     </view>
                     <navigationItem key="navigationItem" title="Add Item" id="MT3-Si-0EU"/>
                     <connections>
+                        <outlet property="backgroundWindow" destination="kia-Qr-x9X" id="3pu-4m-sq0"/>
+                        <outlet property="popUpTitle" destination="cvM-id-3Yi" id="j8Y-4d-hhZ"/>
+                        <outlet property="popUpWindow" destination="jKD-dN-LKD" id="npR-E6-0Bi"/>
+                        <outlet property="quantityText" destination="Yne-BG-5TG" id="Vek-WQ-urn"/>
                         <outlet property="searchBar" destination="15K-RU-KNz" id="ohj-Ov-PDX"/>
                         <outlet property="theTableView" destination="Enr-G3-eOM" id="FUk-8g-Ljd"/>
+                        <outlet property="unitPicker" destination="BlQ-PB-QrQ" id="FET-wz-2wA"/>
+                        <outlet property="unitText" destination="nJ7-Vv-fAR" id="RJC-o3-Ybs"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="KMu-0R-Fxw" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -295,7 +372,7 @@
         <!--MyFridge-->
         <scene sceneID="yA9-up-O9e">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="iLX-b8-Zsn" sceneMemberID="viewController">
+                <navigationController storyboardIdentifier="fridgeNavigator" automaticallyAdjustsScrollViewInsets="NO" id="iLX-b8-Zsn" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="MyFridge" id="XwE-bj-U0H"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="uOi-wc-QA4">
