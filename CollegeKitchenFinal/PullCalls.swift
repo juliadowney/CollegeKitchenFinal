@@ -11,9 +11,9 @@ import Foundation
 
 class Functions {
     typealias SearchResult = ([IngredientSearch]) -> ()
-    var searchIngredients:[IngredientSearch] = []
 
     func ingredientSearch(query: String, completion: @escaping SearchResult){
+        var searchIngredients:[IngredientSearch] = []
         let urlString = "https://spoonacular-recipe-food-nutrition-v1.p.mashape.com/food/ingredients/autocomplete?query=" + query
         let request = NSMutableURLRequest(url: NSURL(string: urlString)! as URL)
         request.addValue("kX0oe5UPsGmsh4IvUqlXBP1Gr6USp1Oub8SjsnmwjLrnCRGq8x",forHTTPHeaderField: "X-Mashape-Key")
@@ -33,11 +33,11 @@ class Functions {
                     print(ingredient)
                   //  let addIngredient:IngredientSearch = IngredientSearch(name: "cucumber", image: "budget")
                     // print (addIngredient)
-                    self.searchIngredients.append(ingredient)
+                    searchIngredients.append(ingredient)
                     //print("added?")
                     //print(self.searchIngredients)
                     DispatchQueue.main.async {
-                       completion(self.searchIngredients)
+                       completion(searchIngredients)
                     }
                     
                 }

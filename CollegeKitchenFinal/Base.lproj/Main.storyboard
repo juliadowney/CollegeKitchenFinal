@@ -170,6 +170,7 @@
                                             </subviews>
                                         </tableViewCellContentView>
                                         <connections>
+                                            <outlet property="image" destination="btV-tc-tTX" id="zFT-D3-nDy"/>
                                             <outlet property="label" destination="eiL-S9-g5q" id="66N-i0-xg7"/>
                                         </connections>
                                     </tableViewCell>

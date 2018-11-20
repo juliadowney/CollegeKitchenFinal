@@ -11,6 +11,7 @@ import UIKit
 class AddItemTableViewCell: UITableViewCell {
 
     
+    @IBOutlet weak var addItemImage: UIImageView!
     @IBOutlet weak var label: UILabel!
     
     override func awakeFromNib() {
@@ -24,8 +25,10 @@ class AddItemTableViewCell: UITableViewCell {
         // Configure the view for the selected state
     }
     
+    //// HI LINDSEY just add in the image name to the command and set image to it - you have to edit the view controller too 
     func displayCell(searchName:String){
         label.text = searchName
+        
     }
 
 }

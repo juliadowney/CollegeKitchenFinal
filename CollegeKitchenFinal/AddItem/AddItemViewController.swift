@@ -8,7 +8,7 @@
 
 import UIKit
 
-class AddItemViewController: UIViewController, UITableViewDataSource, UITableViewDelegate{
+class AddItemViewController: UIViewController, UISearchBarDelegate, UITableViewDataSource, UITableViewDelegate {
     
     @IBOutlet weak var theTableView: UITableView!
     var myArray = ["Mary", "Billy", "Jane"]
@@ -18,9 +18,20 @@ class AddItemViewController: UIViewController, UITableViewDataSource, UITableVie
     @IBOutlet weak var searchBar: UISearchBar!
     
     func searchBarSearchButtonClicked(_ sender: UISearchBar) {
-        print("being clicked")
+        
+        searchIngredients.removeAll()
+        
+        self.theTableView.reloadData()
+        
+        let searchString = searchBar.text!
+        pull.ingredientSearch(query: searchString) {searchedIngredients in
+            self.searchIngredients = searchedIngredients
+            self.theTableView.reloadData()
+        }
+        
+        
     }
-    
+   
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return searchIngredients.count-1
     }
@@ -32,6 +43,8 @@ class AddItemViewController: UIViewController, UITableViewDataSource, UITableVie
         print (searchIngredients[indexPath.row].name)
         print(searchIngredients[indexPath.row].image)
       //  myCell.displayCell()
+        
+        // LINDSEY edit this - image name is stored in seachIngredients[indexPath.row].image
        myCell.displayCell(searchName: searchIngredients[indexPath.row].name)
         
         return myCell
@@ -44,16 +57,11 @@ class AddItemViewController: UIViewController, UITableViewDataSource, UITableVie
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
       //self.theTableView.register(AddItemTableViewCell.self, forCellReuseIdentifier: "theCell")
+        self.searchBar.delegate = self
         self.theTableView.dataSource = self
         self.theTableView.delegate = self
         theTableView.rowHeight = 68
         
-        pull.ingredientSearch(query: "appl") {searchedIngredients in
-            self.searchIngredients = searchedIngredients
-            self.theTableView.reloadData()
-        }
-   
-       
 
     }
     

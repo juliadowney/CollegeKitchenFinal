@@ -12,13 +12,12 @@
 		6C8F5D2C21A204F90042C090 /* Joke.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C8F5D2021A204F80042C090 /* Joke.swift */; };
 		6C8F5D2E21A204F90042C090 /* RecipeDetails.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C8F5D2221A204F90042C090 /* RecipeDetails.swift */; };
 		6C8F5D2F21A204F90042C090 /* EstimatedCost.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C8F5D2321A204F90042C090 /* EstimatedCost.swift */; };
-		6C8F5D3021A204F90042C090 /* ApiResults.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C8F5D2421A204F90042C090 /* ApiResults.swift */; };
 		6C8F5D3121A204F90042C090 /* Ingredient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C8F5D2521A204F90042C090 /* Ingredient.swift */; };
 		6C8F5D3221A204F90042C090 /* MyFridgeTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C8F5D2621A204F90042C090 /* MyFridgeTableViewController.swift */; };
 		6C8F5D3321A204F90042C090 /* Recipe.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C8F5D2721A204F90042C090 /* Recipe.swift */; };
 		6C8F5D3421A204F90042C090 /* ConvertedAmount.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C8F5D2821A204F90042C090 /* ConvertedAmount.swift */; };
 		6C8F5D3E21A3A41C0042C090 /* AddItemViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C8F5D3D21A3A41C0042C090 /* AddItemViewController.swift */; };
-		6CFFBA9B21A3C8DB00CD27D0 /* Functions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CFFBA9A21A3C8DB00CD27D0 /* Functions.swift */; };
+		6CFFBA9B21A3C8DB00CD27D0 /* PullCalls.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CFFBA9A21A3C8DB00CD27D0 /* PullCalls.swift */; };
 		6CFFBA9F21A47D6700CD27D0 /* AddItemTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CFFBA9E21A47D6700CD27D0 /* AddItemTableViewCell.swift */; };
 		7B3F14A721A2018200A235E2 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B3F14A621A2018200A235E2 /* AppDelegate.swift */; };
 		7B3F14A921A2018200A235E2 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B3F14A821A2018200A235E2 /* ViewController.swift */; };
@@ -51,13 +50,12 @@
 		6C8F5D2021A204F80042C090 /* Joke.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Joke.swift; sourceTree = "<group>"; };
 		6C8F5D2221A204F90042C090 /* RecipeDetails.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RecipeDetails.swift; sourceTree = "<group>"; };
 		6C8F5D2321A204F90042C090 /* EstimatedCost.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EstimatedCost.swift; sourceTree = "<group>"; };
-		6C8F5D2421A204F90042C090 /* ApiResults.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ApiResults.swift; sourceTree = "<group>"; };
 		6C8F5D2521A204F90042C090 /* Ingredient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Ingredient.swift; sourceTree = "<group>"; };
 		6C8F5D2621A204F90042C090 /* MyFridgeTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyFridgeTableViewController.swift; sourceTree = "<group>"; };
 		6C8F5D2721A204F90042C090 /* Recipe.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Recipe.swift; sourceTree = "<group>"; };
 		6C8F5D2821A204F90042C090 /* ConvertedAmount.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConvertedAmount.swift; sourceTree = "<group>"; };
 		6C8F5D3D21A3A41C0042C090 /* AddItemViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddItemViewController.swift; sourceTree = "<group>"; };
-		6CFFBA9A21A3C8DB00CD27D0 /* Functions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Functions.swift; sourceTree = "<group>"; };
+		6CFFBA9A21A3C8DB00CD27D0 /* PullCalls.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PullCalls.swift; sourceTree = "<group>"; };
 		6CFFBA9E21A47D6700CD27D0 /* AddItemTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddItemTableViewCell.swift; sourceTree = "<group>"; };
 		7B3F14A321A2018200A235E2 /* CollegeKitchenFinal.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CollegeKitchenFinal.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		7B3F14A621A2018200A235E2 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -98,6 +96,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		6CFFBAA021A494D200CD27D0 /* AddItem */ = {
+			isa = PBXGroup;
+			children = (
+				6CFFBA9E21A47D6700CD27D0 /* AddItemTableViewCell.swift */,
+				6C8F5D3D21A3A41C0042C090 /* AddItemViewController.swift */,
+			);
+			path = AddItem;
+			sourceTree = "<group>";
+		};
 		7B3F149A21A2018200A235E2 = {
 			isa = PBXGroup;
 			children = (
@@ -121,7 +128,7 @@
 		7B3F14A521A2018200A235E2 /* CollegeKitchenFinal */ = {
 			isa = PBXGroup;
 			children = (
-				6C8F5D2421A204F90042C090 /* ApiResults.swift */,
+				6CFFBAA021A494D200CD27D0 /* AddItem */,
 				6C8F5D2821A204F90042C090 /* ConvertedAmount.swift */,
 				6C8F5D2321A204F90042C090 /* EstimatedCost.swift */,
 				6C8F5D1F21A204F80042C090 /* EstimatedCostAPI.swift */,
@@ -136,9 +143,7 @@
 				7B3F14AA21A2018200A235E2 /* Main.storyboard */,
 				7B3F14AD21A2018300A235E2 /* Assets.xcassets */,
 				7B3F14B221A2018300A235E2 /* Info.plist */,
-				6C8F5D3D21A3A41C0042C090 /* AddItemViewController.swift */,
-				6CFFBA9A21A3C8DB00CD27D0 /* Functions.swift */,
-				6CFFBA9E21A47D6700CD27D0 /* AddItemTableViewCell.swift */,
+				6CFFBA9A21A3C8DB00CD27D0 /* PullCalls.swift */,
 			);
 			path = CollegeKitchenFinal;
 			sourceTree = "<group>";
@@ -300,11 +305,10 @@
 				7B3F14A721A2018200A235E2 /* AppDelegate.swift in Sources */,
 				6C8F5D2F21A204F90042C090 /* EstimatedCost.swift in Sources */,
 				6C8F5D2B21A204F90042C090 /* EstimatedCostAPI.swift in Sources */,
-				6CFFBA9B21A3C8DB00CD27D0 /* Functions.swift in Sources */,
+				6CFFBA9B21A3C8DB00CD27D0 /* PullCalls.swift in Sources */,
 				6C8F5D3321A204F90042C090 /* Recipe.swift in Sources */,
 				6CFFBA9F21A47D6700CD27D0 /* AddItemTableViewCell.swift in Sources */,
 				6C8F5D3E21A3A41C0042C090 /* AddItemViewController.swift in Sources */,
-				6C8F5D3021A204F90042C090 /* ApiResults.swift in Sources */,
 				6C8F5D3121A204F90042C090 /* Ingredient.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
