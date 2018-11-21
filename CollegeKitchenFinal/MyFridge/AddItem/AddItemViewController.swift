@@ -13,6 +13,7 @@ class AddItemViewController: UIViewController, UISearchBarDelegate, UITableViewD
     @IBOutlet weak var theTableView: UITableView! // table view of items when searching ingredients to add
     @IBOutlet weak var searchBar: UISearchBar! // the searchbar
     let pull=PullCalls() // the PullCalls file where API Requests are handled
+    @IBOutlet weak var typeToSearchLabel: UILabel!
     var searchIngredients:[IngredientSearch] = [] // the array where the current searchedIngredients are stored
 
 
@@ -23,9 +24,10 @@ class AddItemViewController: UIViewController, UISearchBarDelegate, UITableViewD
     @IBOutlet weak var popUpTitle: UILabel! // the title on the pop up window with the name of the food
     @IBOutlet weak var unitPicker: UIPickerView! // the picker of units when you're adding an item in popup
     @IBOutlet weak var unitText: UITextField! // the unit textbox in popup
-    @IBOutlet weak var quantityText: UITextField!
+    @IBOutlet weak var quantityText: UITextField! // the quanitity textbox in popup
+    var currentIngredient:IngredientSearch!
     
-    var unitOptions:[String] = ["cups", "lbs", "oz", "tbsp", "tsp", "gal", "pint", "quarts"] // current picker options - can change
+    var unitOptions:[String] = ["ounces", "grams","milliliters","pints", "pounds","cups", "liters", "teaspoons", "package", "tablespoons"] // current picker options - can change
 
     
     //UNIT PICKER
@@ -77,6 +79,24 @@ class AddItemViewController: UIViewController, UISearchBarDelegate, UITableViewD
     }
     
     
+    @IBAction func doneAddingItem(_ sender: Any) {
+        var convertedServings:ConvertedAmount!
+        let quantity = Double(quantityText.text!)
+        pull.convertAmounts(ingredientName: currentIngredient.name, sourceAmount: quantity!, sourceUnit: unitText.text!, targetUnit: "servings") {convertedAmount in
+            convertedServings = convertedAmount
+            print (self.currentIngredient.name)
+            print ((convertedServings.targetAmount))
+            self.pull.parseIngredient(ingredientName: self.currentIngredient.name, servings: Int(convertedServings.targetAmount)){newObject in
+                let newIngredient:Ingredient = newObject
+                print (newIngredient)
+               //// PLIST - newIngredient needs to be stored in myFridge plist
+                
+            }
+        }
+        
+        
+    }
+    
     
     // SEARCH BAR
     func searchBarSearchButtonClicked(_ sender: UISearchBar) {
@@ -95,6 +115,12 @@ class AddItemViewController: UIViewController, UISearchBarDelegate, UITableViewD
    
     // TABLE VIEW FUNCTIONALITY
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        if (searchIngredients.count == 0){
+            typeToSearchLabel.isHidden = false
+        }
+        else {
+            typeToSearchLabel.isHidden = true
+        }
         return searchIngredients.count-1
     }
     
@@ -103,8 +129,7 @@ class AddItemViewController: UIViewController, UISearchBarDelegate, UITableViewD
         print (searchIngredients[indexPath.row].name)
         print(searchIngredients[indexPath.row].image)
         
-        // LINDSEY edit this - image name is stored in seachIngredients[indexPath.row].image
-       myCell.displayCell(searchName: searchIngredients[indexPath.row].name)
+       myCell.displayCell(searchName: searchIngredients[indexPath.row].name, searchImage:searchIngredients[indexPath.row].image )
         
         return myCell
     }
@@ -120,7 +145,7 @@ class AddItemViewController: UIViewController, UISearchBarDelegate, UITableViewD
         backgroundWindow.isUserInteractionEnabled = true // enables it so the user can't interact with the table view while they interact with the popup
         
         popUpWindow.isHidden = false // unhides the popup
-        let currentIngredient = searchIngredients[indexPath.row]
+        currentIngredient = searchIngredients[indexPath.row]
         popUpTitle.text = currentIngredient.name // updates the popup title
         
     }
@@ -144,8 +169,8 @@ class AddItemViewController: UIViewController, UISearchBarDelegate, UITableViewD
         popUpWindow.isHidden=true
         unitPicker.isHidden = true
         self.navigationItem.rightBarButtonItem = nil
-      
 
+        
         self.unitPicker.delegate = self
         self.unitPicker.dataSource = self
         self.searchBar.delegate = self
@@ -153,7 +178,6 @@ class AddItemViewController: UIViewController, UISearchBarDelegate, UITableViewD
         self.theTableView.delegate = self
         theTableView.rowHeight = 68
         
-
     }
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()

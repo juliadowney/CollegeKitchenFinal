@@ -10,9 +10,9 @@ import UIKit
 
 class AddItemTableViewCell: UITableViewCell {
 
-    
     @IBOutlet weak var addItemImage: UIImageView!
-    @IBOutlet weak var label: UILabel!
+    @IBOutlet weak var addItemLabel: UILabel!
+    
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -25,10 +25,19 @@ class AddItemTableViewCell: UITableViewCell {
         // Configure the view for the selected state
     }
     
-    //// HI LINDSEY just add in the image name to the command and set image to it - you have to edit the view controller too 
-    func displayCell(searchName:String){
-        label.text = searchName
+    func displayCell(searchName:String, searchImage:String){
+        addItemLabel.text = searchName
         
+        let imageName  = "https://spoonacular.com/cdn/ingredients_100x100/" + searchImage
+        print (imageName)
+        
+        let imageURL = URL(string:imageName)
+        if let data = NSData(contentsOf: imageURL!) {
+            addItemImage.image =  UIImage(data: data as Data)
+        }
+        else {
+            addItemImage.image = UIImage(named: "budget")
+        }
     }
 
 }

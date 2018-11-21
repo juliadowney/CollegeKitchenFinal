@@ -72,23 +72,18 @@
         <!--MyFridge-->
         <scene sceneID="MlB-54-wzg">
             <objects>
-                <viewController id="TDG-lS-myS" sceneMemberID="viewController">
+                <viewController id="TDG-lS-myS" customClass="MyFridgeViewController" customModule="CollegeKitchenFinal" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="nKj-Ux-Sfq">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="NHs-kU-6uL">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="vPd-zI-MZi">
                                 <rect key="frame" x="0.0" y="64" width="375" height="554"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </tableView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        <constraints>
-                            <constraint firstItem="NHs-kU-6uL" firstAttribute="top" secondItem="JYq-uJ-x7O" secondAttribute="top" id="Dre-6a-le3"/>
-                            <constraint firstItem="JYq-uJ-x7O" firstAttribute="trailing" secondItem="NHs-kU-6uL" secondAttribute="trailing" id="O8T-e5-XHB"/>
-                            <constraint firstItem="JYq-uJ-x7O" firstAttribute="bottom" secondItem="NHs-kU-6uL" secondAttribute="bottom" id="ZIB-sq-yu3"/>
-                            <constraint firstItem="NHs-kU-6uL" firstAttribute="leading" secondItem="JYq-uJ-x7O" secondAttribute="leading" id="nu7-Kk-3YU"/>
-                        </constraints>
                         <viewLayoutGuide key="safeArea" id="JYq-uJ-x7O"/>
                     </view>
                     <navigationItem key="navigationItem" title="MyFridge" id="x0o-IT-Siu">
@@ -103,6 +98,9 @@
                             </connections>
                         </barButtonItem>
                     </navigationItem>
+                    <connections>
+                        <outlet property="myFridgeTableView" destination="vPd-zI-MZi" id="2WQ-PQ-180"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="LHJ-HW-idC" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -157,11 +155,11 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="budget" translatesAutoresizingMaskIntoConstraints="NO" id="btV-tc-tTX">
-                                                    <rect key="frame" x="0.0" y="-17" width="105" height="128"/>
+                                                    <rect key="frame" x="0.0" y="0.0" width="68" height="68"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 </imageView>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eiL-S9-g5q">
-                                                    <rect key="frame" x="140" y="4" width="147" height="58"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eiL-S9-g5q">
+                                                    <rect key="frame" x="100" y="4" width="147" height="58"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
@@ -170,11 +168,19 @@
                                             </subviews>
                                         </tableViewCellContentView>
                                         <connections>
-                                            <outlet property="label" destination="eiL-S9-g5q" id="66N-i0-xg7"/>
+                                            <outlet property="addItemImage" destination="btV-tc-tTX" id="RIy-9x-zbD"/>
+                                            <outlet property="addItemLabel" destination="eiL-S9-g5q" id="mvg-ZM-cJe"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Type To Search ..." textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="I9m-YV-hfm">
+                                <rect key="frame" x="0.0" y="64" width="375" height="556"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                <color key="textColor" red="0.75406885150000003" green="0.75408679249999999" blue="0.75407713649999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                             <view alpha="0.65000000000000002" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="kia-Qr-x9X" userLabel="BackgroundView">
                                 <rect key="frame" x="0.0" y="64" width="375" height="554"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -236,6 +242,9 @@
                                         <state key="normal" title="Add Item">
                                             <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         </state>
+                                        <connections>
+                                            <action selector="doneAddingItem:" destination="24p-eN-8Lf" eventType="touchUpInside" id="4cF-ET-FmK"/>
+                                        </connections>
                                     </button>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cvM-id-3Yi">
                                         <rect key="frame" x="0.0" y="8" width="302" height="40"/>
@@ -259,6 +268,7 @@
                         <outlet property="quantityText" destination="Yne-BG-5TG" id="Vek-WQ-urn"/>
                         <outlet property="searchBar" destination="15K-RU-KNz" id="ohj-Ov-PDX"/>
                         <outlet property="theTableView" destination="Enr-G3-eOM" id="FUk-8g-Ljd"/>
+                        <outlet property="typeToSearchLabel" destination="I9m-YV-hfm" id="ria-uk-UoZ"/>
                         <outlet property="unitPicker" destination="BlQ-PB-QrQ" id="FET-wz-2wA"/>
                         <outlet property="unitText" destination="nJ7-Vv-fAR" id="RJC-o3-Ybs"/>
                     </connections>
@@ -372,6 +382,7 @@
         <!--MyFridge-->
         <scene sceneID="yA9-up-O9e">
             <objects>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dq6-X4-MBc" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <navigationController storyboardIdentifier="fridgeNavigator" automaticallyAdjustsScrollViewInsets="NO" id="iLX-b8-Zsn" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="MyFridge" id="XwE-bj-U0H"/>
                     <toolbarItems/>
@@ -384,7 +395,6 @@
                         <segue destination="TDG-lS-myS" kind="relationship" relationship="rootViewController" id="4Al-sB-jQG"/>
                     </connections>
                 </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="dq6-X4-MBc" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-308" y="948"/>
         </scene>

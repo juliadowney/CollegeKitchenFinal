@@ -96,6 +96,16 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		6CB03CA521A5256800530BA9 /* MyFridge */ = {
+			isa = PBXGroup;
+			children = (
+				6CFFBAA921A4D30E00CD27D0 /* MyFridgeViewController.swift */,
+				6C8F5D2521A204F90042C090 /* Ingredient.swift */,
+				6CFFBAA021A494D200CD27D0 /* AddItem */,
+			);
+			path = MyFridge;
+			sourceTree = "<group>";
+		};
 		6CFFBAA021A494D200CD27D0 /* AddItem */ = {
 			isa = PBXGroup;
 			children = (
@@ -129,12 +139,10 @@
 		7B3F14A521A2018200A235E2 /* CollegeKitchenFinal */ = {
 			isa = PBXGroup;
 			children = (
-				6CFFBAA021A494D200CD27D0 /* AddItem */,
+				6CB03CA521A5256800530BA9 /* MyFridge */,
 				6C8F5D2821A204F90042C090 /* ConvertedAmount.swift */,
-				6CFFBAA921A4D30E00CD27D0 /* MyFridgeViewController.swift */,
 				6C8F5D2321A204F90042C090 /* EstimatedCost.swift */,
 				6C8F5D1F21A204F80042C090 /* EstimatedCostAPI.swift */,
-				6C8F5D2521A204F90042C090 /* Ingredient.swift */,
 				6C8F5D2021A204F80042C090 /* Joke.swift */,
 				6C8F5D2721A204F90042C090 /* Recipe.swift */,
 				6C8F5D2221A204F90042C090 /* RecipeDetails.swift */,
