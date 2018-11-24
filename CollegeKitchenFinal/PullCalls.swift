@@ -145,4 +145,30 @@ class PullCalls {
         }
         tache.resume()
     }
+    typealias estimatedCostResult = (EstimatedCost) -> ()
+
+    func getEstimatedCost(id: Int, amount: Double, unit: String, completion: @escaping estimatedCostResult){
+        var estimatedCost:EstimatedCost!
+        let mainUrl = "https://spoonacular-recipe-food-nutrition-v1.p.mashape.com/food/ingredients/"
+        let idUrl = String(id) + "/information?"
+        let amountUrl = "amount=" + String(amount)
+        let unitUrl = "&unit=" + unit
+        let urlString = mainUrl + idUrl + amountUrl + unitUrl
+        let request = NSMutableURLRequest(url: NSURL(string: urlString)! as URL)
+        request.addValue("kX0oe5UPsGmsh4IvUqlXBP1Gr6USp1Oub8SjsnmwjLrnCRGq8x",forHTTPHeaderField: "X-Mashape-Key")
+        request.addValue("application/json",forHTTPHeaderField: "Accept")
+        let session = URLSession.shared
+        request.httpMethod = "GET"
+        let tache = session.dataTask(with: request as URLRequest) { (data, response, error) -> Void in
+            if let jsonData = data {
+                let json = JSONDecoder()
+                let search = try? json.decode(EstimatedCostAPI.self, from: jsonData)
+                estimatedCost = search?.estimatedCost
+                DispatchQueue.main.async {
+                    completion(estimatedCost)
+                }
+            }
+        }
+        tache.resume()
+    }
 }

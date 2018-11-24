@@ -15,7 +15,7 @@ class AddItemViewController: UIViewController, UISearchBarDelegate, UITableViewD
     let pull=PullCalls() // the PullCalls file where API Requests are handled
     @IBOutlet weak var typeToSearchLabel: UILabel!
     var searchIngredients:[IngredientSearch] = [] // the array where the current searchedIngredients are stored
-
+    let activityIndicator = UIActivityIndicatorView(activityIndicatorStyle: .whiteLarge)
 
     
     // ITEMS FOR POPUP WINDOW WHEN YOU CLICK AN ITEM TO ADD TO FRIDGE
@@ -80,17 +80,44 @@ class AddItemViewController: UIViewController, UISearchBarDelegate, UITableViewD
     
     
     @IBAction func doneAddingItem(_ sender: Any) {
+        activityIndicator.startAnimating()
+        let quantity = Double(self.quantityText.text!)
+
+
         var convertedServings:ConvertedAmount!
-        let quantity = Double(quantityText.text!)
-        pull.convertAmounts(ingredientName: currentIngredient.name, sourceAmount: quantity!, sourceUnit: unitText.text!, targetUnit: "servings") {convertedAmount in
-            convertedServings = convertedAmount
-            print (self.currentIngredient.name)
-            print ((convertedServings.targetAmount))
-            self.pull.parseIngredient(ingredientName: self.currentIngredient.name, servings: Int(convertedServings.targetAmount)){newObject in
-                let newIngredient:Ingredient = newObject
-                print (newIngredient)
-               //// PLIST - newIngredient needs to be stored in myFridge plist
-                
+            self.pull.convertAmounts(ingredientName: self.currentIngredient.name, sourceAmount: quantity!, sourceUnit: self.unitText.text!, targetUnit: "servings") {convertedAmount in
+                convertedServings = convertedAmount
+                print (self.currentIngredient.name)
+                print ((convertedServings.targetAmount))
+                self.pull.parseIngredient(ingredientName: self.currentIngredient.name, servings: Int(convertedServings.targetAmount)){newObject in
+                    let newIngredient:Ingredient = Ingredient(id: newObject.id!, name: newObject.name!, amount: quantity, unitLong: self.unitText.text!)
+                    
+                        print (newIngredient)
+                    //// PLIST - newIngredient needs to be stored in myFridge plist
+                        let path = Bundle.main.path(forResource: "UserStorage", ofType: "plist")
+                        let dict = NSMutableDictionary(contentsOfFile: path!)!
+                        var currentList = dict.object(forKey: "myFridge") as! Array<Data>
+                        let data = try! JSONEncoder().encode(newIngredient)
+                        currentList.append(data)
+                    
+                        dict.setValue(currentList, forKey: "myFridge")
+                        dict.write(toFile: path!, atomically: true)
+
+                    self.pull.getEstimatedCost(id: newIngredient.id!, amount: newIngredient.amount!, unit: newIngredient.unitLong!){estimatedCostResult in
+                            let estimatedCost:EstimatedCost = estimatedCostResult
+                            print (estimatedCost)
+                        //// PLIST - estimatedCost needs to be subtracted from budget plist (keep mind of US Cents vs US Dollars)
+                        self.backgroundWindow.isHidden = true
+
+                        DispatchQueue.global(qos: .userInitiated).async {
+
+                        self.setView(view: self.popUpWindow, hidden: true)
+                        DispatchQueue.main.async {
+                            self.activityIndicator.stopAnimating()
+                        self.navigationController?.popToRootViewController(animated: true)
+                        }
+                    }
+            }
             }
         }
         
@@ -100,16 +127,22 @@ class AddItemViewController: UIViewController, UISearchBarDelegate, UITableViewD
     
     // SEARCH BAR
     func searchBarSearchButtonClicked(_ sender: UISearchBar) {
-        
-        searchIngredients.removeAll() // clears the current search ingredient array
-         view.endEditing(true) // closes the keyboard
-        self.theTableView.reloadData() // reloads the data - might not need
-        let searchString = searchBar.text! // text from search bar
+        activityIndicator.startAnimating()
+        view.endEditing(true) // closes the keyboard
+        let searchString = self.searchBar.text! // text from search bar
+
+        DispatchQueue.global(qos: .userInitiated).async {
+
+            self.searchIngredients.removeAll() // clears the current search ingredient array
         
         // pull ingredients from API (pull is an 'object' of PullCalls as declared in beginning of this file)
-        pull.ingredientSearch(query: searchString) {searchedIngredients in
+            self.pull.ingredientSearch(query: searchString) {searchedIngredients in
             self.searchIngredients = searchedIngredients
-            self.theTableView.reloadData()
+                DispatchQueue.main.async {
+                    self.activityIndicator.stopAnimating()
+                    self.theTableView.reloadData()
+                }
+        }
         }
     }
    
@@ -144,7 +177,7 @@ class AddItemViewController: UIViewController, UISearchBarDelegate, UITableViewD
         backgroundWindow.isHidden=false //causes the dark background to appear
         backgroundWindow.isUserInteractionEnabled = true // enables it so the user can't interact with the table view while they interact with the popup
         
-        popUpWindow.isHidden = false // unhides the popup
+        setView(view: popUpWindow, hidden: false)// unhides the popup
         currentIngredient = searchIngredients[indexPath.row]
         popUpTitle.text = currentIngredient.name // updates the popup title
         
@@ -154,22 +187,33 @@ class AddItemViewController: UIViewController, UISearchBarDelegate, UITableViewD
         navigationItem.hidesBackButton = false
         backgroundWindow.isHidden = true
         backgroundWindow.isUserInteractionEnabled = false
-        popUpWindow.isHidden=true
+        setView(view: popUpWindow, hidden: true)
         unitPicker.isHidden = true
         self.navigationItem.rightBarButtonItem = nil
         
+    }
+ //   https://stackoverflow.com/questions/9115854/uiview-hide-show-with-animation
+    func setView(view: UIView, hidden: Bool) {
+        UIView.transition(with: view, duration: 0.5, options: .transitionCrossDissolve, animations: {
+            view.isHidden = hidden
+        })
     }
     
     override func viewDidLoad() {
         
         super.viewDidLoad()
-   
+       
         backgroundWindow.isHidden = true
         backgroundWindow.isUserInteractionEnabled = false
         popUpWindow.isHidden=true
         unitPicker.isHidden = true
         self.navigationItem.rightBarButtonItem = nil
 
+        activityIndicator.backgroundColor = UIColor.white
+        activityIndicator.frame = CGRect(x: view.frame.minX, y: theTableView.frame.minY, width: view.frame.width, height: view.frame.height - searchBar.frame.height*2)
+        view.addSubview(activityIndicator)
+        activityIndicator.hidesWhenStopped = true
+        activityIndicator.color = UIColor.black
         
         self.unitPicker.delegate = self
         self.unitPicker.dataSource = self

@@ -102,7 +102,7 @@ class ViewController: UIViewController {
         }
         tache.resume()
     }
-    /*
+    
     func getEstimatedCost(id: Int, amount: Double, unit: String){
         let mainUrl = "https://spoonacular-recipe-food-nutrition-v1.p.mashape.com/food/ingredients/"
         let idUrl = String(id) + "/information?"
@@ -123,7 +123,7 @@ class ViewController: UIViewController {
         }
         tache.resume()
     }
-    
+    /*
     func getRecipesByIngredients(fillIngredients: Bool, ingredients: [String], limitLicense: Bool, number: Int, ranking: Int){
         let separatedIngredientsForUrl = ingredients.joined(separator: "%2C")
         let urlString = "https://spoonacular-recipe-food-nutrition-v1.p.mashape.com/recipes/findByIngredients?fillIngredients=" + fillIngredients.description + "&ingredients=" + separatedIngredientsForUrl + "&limitLicense=" + limitLicense.description + "&number=" + String(number) + "&ranking=" + String(ranking)
@@ -174,8 +174,8 @@ class ViewController: UIViewController {
         super.viewDidLoad()
    //getIngredientSearch(query: "appl")
        // convertAmounts(ingredientName: "flour", sourceAmount: 2.5, sourceUnit: "cups", targetUnit: "grams")
-//        getEstimatedCost(id: 9266, amount: 100, unit: "gram")
-        parseIngredient(ingredientName: "apple", servings: 2)
+       // getEstimatedCost(id: 9266, amount: 100, unit: "gram")
+     //   parseIngredient(ingredientName: "apple", servings: 2)
 //        getRecipesByIngredients(fillIngredients: false, ingredients: ["apples", "flour", "sugar"], limitLicense: false, number: 5, ranking: 1)
         //getRecipeDetails(id: 479101)
         

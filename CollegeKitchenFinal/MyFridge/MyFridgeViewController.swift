@@ -21,10 +21,9 @@ class MyFridgeViewController: UIViewController, UITableViewDataSource, UITableVi
         
         
         func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-            let myCell = tableView.dequeueReusableCell(withIdentifier: "theCell")! as UITableViewCell
-            
-            myCell.textLabel!.text = myFridgeIngredients[indexPath.row].name
-            
+            let myCell:myFridgeTableViewCell = tableView.dequeueReusableCell(withIdentifier: "fridgeCell")! as! myFridgeTableViewCell
+            let ingredient = myFridgeIngredients[indexPath.row]
+            myCell.displayCell(name: ingredient.name!, amount: ingredient.amount!, unit: ingredient.unitLong!)
             return myCell
         }
         
@@ -32,28 +31,34 @@ class MyFridgeViewController: UIViewController, UITableViewDataSource, UITableVi
         
         
         func updateIngredients(){
-            let ingredient1:Ingredient = Ingredient(id: 9252, name: "pear", amount: 65.0, unitLong: "servings")
-            let ingredient2:Ingredient = Ingredient(id: 16057, name: "chickpea", amount: 132.0, unitLong: "servings")
-            let ingredient3:Ingredient = Ingredient(id: 16063, name: "cowpea", amount: 126.0, unitLong: "servings")
-            myFridgeIngredients.append(ingredient1)
-            myFridgeIngredients.append(ingredient2)
-            myFridgeIngredients.append(ingredient3)
-            
+           myFridgeIngredients = []
+            let path = Bundle.main.path(forResource: "UserStorage", ofType: "plist")
+            let dict = NSMutableDictionary(contentsOfFile: path!)!
+            let currentList = dict.object(forKey: "myFridge") as! Array<Data>
+            for eachIngredient in currentList {
+                let jsonDecoder = JSONDecoder()
+                let thisIngredient:Ingredient = try! jsonDecoder.decode(Ingredient.self, from: eachIngredient)
+                myFridgeIngredients.append(thisIngredient)
         }
-    
+    }
     
         
         override func viewDidLoad() {
             
             super.viewDidLoad()
-            
+            print("viewLoaded")
             updateIngredients()
+            
+           
             self.myFridgeTableView.delegate=self
             self.myFridgeTableView.dataSource=self
-            self.myFridgeTableView.register(UITableViewCell.self, forCellReuseIdentifier: "theCell")
 
             // Do any additional setup after loading the view.
         }
+    override func viewDidAppear(_ animated: Bool) {
+         updateIngredients()
+        myFridgeTableView.reloadData()
+    }
         
         override func didReceiveMemoryWarning() {
             super.didReceiveMemoryWarning()
