@@ -25,7 +25,7 @@ class myFridgeTableViewCell: UITableViewCell {
     }
     
     func displayCell(name:String, amount:Double, unit:String){
-        ingredientName.text = name
+        ingredientName.text = name.capitalized
         ingredientQuantity.text = String(format:"%2.f", amount)
  + " " + unit
     }

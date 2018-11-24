@@ -26,7 +26,7 @@ class AddItemTableViewCell: UITableViewCell {
     }
     
     func displayCell(searchName:String, searchImage:String){
-        addItemLabel.text = searchName
+        addItemLabel.text = searchName.capitalized
         
         let imageName  = "https://spoonacular.com/cdn/ingredients_100x100/" + searchImage
         print (imageName)

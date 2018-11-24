@@ -51,7 +51,6 @@ class AddItemViewController: UIViewController, UISearchBarDelegate, UITableViewD
  */
     @IBAction func selectUnit(_ sender: Any) {
         
-        popUpWindow.isUserInteractionEnabled = false // prevents user from editing anything else in popup window so they can only interact with picker
         unitPicker.isHidden = false // unhides picker
         self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Done", style: .done, target: self, action: #selector(closePicker)) // adds a Done button to the nav bar so we know when user is done selecting
     }
@@ -108,10 +107,10 @@ class AddItemViewController: UIViewController, UISearchBarDelegate, UITableViewD
                             print (estimatedCost)
                         //// PLIST - estimatedCost needs to be subtracted from budget plist (keep mind of US Cents vs US Dollars)
                         self.backgroundWindow.isHidden = true
+                        self.setView(view: self.popUpWindow, hidden: true)
 
                         DispatchQueue.global(qos: .userInitiated).async {
 
-                        self.setView(view: self.popUpWindow, hidden: true)
                         DispatchQueue.main.async {
                             self.activityIndicator.stopAnimating()
                         self.navigationController?.popToRootViewController(animated: true)
@@ -179,7 +178,7 @@ class AddItemViewController: UIViewController, UISearchBarDelegate, UITableViewD
         
         setView(view: popUpWindow, hidden: false)// unhides the popup
         currentIngredient = searchIngredients[indexPath.row]
-        popUpTitle.text = currentIngredient.name // updates the popup title
+        popUpTitle.text = currentIngredient.name.capitalized // updates the popup title
         
     }
     
