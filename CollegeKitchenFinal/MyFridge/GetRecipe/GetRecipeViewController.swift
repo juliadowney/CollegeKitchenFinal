@@ -89,4 +89,12 @@ class GetRecipeViewController: UIViewController, UITableViewDataSource, UITableV
        myCell.displayCell(recipeName: getRecipeArray[indexPath.row].title, recipeImageString: getRecipeArray[indexPath.row].image)
         return myCell
     }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let vc = RecipeInfoViewController()
+        print ("hi")
+        vc.currentRecipe = getRecipeArray[indexPath.row]
+        navigationController?.pushViewController(vc, animated: true)
+    }
+    
 }

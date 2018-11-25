@@ -28,7 +28,7 @@ class GetRecipeTableViewCell: UITableViewCell {
     func displayCell(recipeName:String, recipeImageString:String){
         recipeTitle.text = recipeName.capitalized
         
-        let imageName  = "https://spoonacular.com/cdn/ingredients_100x100/" + recipeImageString
+        let imageName  = "https://spoonacular.com/cdn/recipes_100x100/" + recipeImageString
         print (imageName)
         
         let imageURL = URL(string:imageName)

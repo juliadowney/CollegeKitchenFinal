@@ -200,4 +200,29 @@ class PullCalls {
         }
         tache.resume()
     }
+    typealias recipeDetailsResult = (RecipeDetails) -> ()
+    func getRecipeDetails(id: Int, completion: @escaping recipeDetailsResult){
+        var detailedRecipe:RecipeDetails!
+        let urlString = "https://spoonacular-recipe-food-nutrition-v1.p.mashape.com/recipes/" + String(id) + "/information?includeNutrition=false"
+        let request = NSMutableURLRequest(url: NSURL(string: urlString)! as URL)
+        request.addValue("kX0oe5UPsGmsh4IvUqlXBP1Gr6USp1Oub8SjsnmwjLrnCRGq8x",forHTTPHeaderField: "X-Mashape-Key")
+        request.addValue("application/json",forHTTPHeaderField: "Accept")
+        let session = URLSession.shared
+        request.httpMethod = "GET"
+        let tache = session.dataTask(with: request as URLRequest) { (data, response, error) -> Void in
+            if let jsonData = data {
+                print(jsonData)
+                let json = JSONDecoder()
+                guard let search = try? json.decode(RecipeDetails.self, from: jsonData) else {
+                    print("nil search value")
+                    return
+                }
+                detailedRecipe = search
+                DispatchQueue.main.async {
+                    completion(detailedRecipe)
+                }
+            }
+        }
+        tache.resume()
+    }
 }
