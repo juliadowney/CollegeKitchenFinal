@@ -7,8 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		6C5C045321AA1C3500FC596E /* RecipeInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C5C045121AA1C3500FC596E /* RecipeInfoViewController.swift */; };
-		6C5C045421AA1C3500FC596E /* RecipeInfoViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6C5C045221AA1C3500FC596E /* RecipeInfoViewController.xib */; };
+		6C496AFB21AC72E80052F796 /* RecipeDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C496AFA21AC72E80052F796 /* RecipeDetailsViewController.swift */; };
 		6C8F5D2921A204F90042C090 /* IngredientSearch.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C8F5D1D21A204F80042C090 /* IngredientSearch.swift */; };
 		6C8F5D2B21A204F90042C090 /* EstimatedCostAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C8F5D1F21A204F80042C090 /* EstimatedCostAPI.swift */; };
 		6C8F5D2C21A204F90042C090 /* Joke.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C8F5D2021A204F80042C090 /* Joke.swift */; };
@@ -52,8 +51,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		6C5C045121AA1C3500FC596E /* RecipeInfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeInfoViewController.swift; sourceTree = "<group>"; };
-		6C5C045221AA1C3500FC596E /* RecipeInfoViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RecipeInfoViewController.xib; sourceTree = "<group>"; };
+		6C496AFA21AC72E80052F796 /* RecipeDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeDetailsViewController.swift; sourceTree = "<group>"; };
 		6C8F5D1D21A204F80042C090 /* IngredientSearch.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IngredientSearch.swift; sourceTree = "<group>"; };
 		6C8F5D1F21A204F80042C090 /* EstimatedCostAPI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EstimatedCostAPI.swift; sourceTree = "<group>"; };
 		6C8F5D2021A204F80042C090 /* Joke.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Joke.swift; sourceTree = "<group>"; };
@@ -195,8 +193,7 @@
 				7B3F14AD21A2018300A235E2 /* Assets.xcassets */,
 				7B3F14B221A2018300A235E2 /* Info.plist */,
 				6CB03CAA21A8DB5300530BA9 /* UserStorage.plist */,
-				6C5C045121AA1C3500FC596E /* RecipeInfoViewController.swift */,
-				6C5C045221AA1C3500FC596E /* RecipeInfoViewController.xib */,
+				6C496AFA21AC72E80052F796 /* RecipeDetailsViewController.swift */,
 			);
 			path = CollegeKitchenFinal;
 			sourceTree = "<group>";
@@ -323,7 +320,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				6C5C045421AA1C3500FC596E /* RecipeInfoViewController.xib in Resources */,
 				7B3F14AE21A2018300A235E2 /* Assets.xcassets in Resources */,
 				7B3F14AC21A2018200A235E2 /* Main.storyboard in Resources */,
 				6CB03CAB21A8DB5300530BA9 /* UserStorage.plist in Resources */,
@@ -361,10 +357,10 @@
 				6C8F5D2F21A204F90042C090 /* EstimatedCost.swift in Sources */,
 				6CB03CA721A61CBC00530BA9 /* MyBudgetViewController.swift in Sources */,
 				6C8F5D2B21A204F90042C090 /* EstimatedCostAPI.swift in Sources */,
-				6C5C045321AA1C3500FC596E /* RecipeInfoViewController.swift in Sources */,
 				6CFFBA9B21A3C8DB00CD27D0 /* PullCalls.swift in Sources */,
 				6CFFBAAA21A4D30E00CD27D0 /* MyFridgeViewController.swift in Sources */,
 				6CB03CAF21A9CB8D00530BA9 /* GetRecipeViewController.swift in Sources */,
+				6C496AFB21AC72E80052F796 /* RecipeDetailsViewController.swift in Sources */,
 				6C8F5D3321A204F90042C090 /* Recipe.swift in Sources */,
 				6CB03CB121A9D3EF00530BA9 /* GetRecipeTableViewCell.swift in Sources */,
 				6CFFBA9F21A47D6700CD27D0 /* AddItemTableViewCell.swift in Sources */,

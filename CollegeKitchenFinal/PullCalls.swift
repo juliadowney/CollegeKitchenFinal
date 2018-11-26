@@ -200,9 +200,12 @@ class PullCalls {
         }
         tache.resume()
     }
-    typealias recipeDetailsResult = (RecipeDetails) -> ()
-    func getRecipeDetails(id: Int, completion: @escaping recipeDetailsResult){
-        var detailedRecipe:RecipeDetails!
+    
+    typealias getRecipesDetailsResult = (RecipeDetails) -> ()
+
+    func getRecipeDetails(id: Int, completion: @escaping getRecipesDetailsResult){
+        var thisRecipeDetails:RecipeDetails!
+        
         let urlString = "https://spoonacular-recipe-food-nutrition-v1.p.mashape.com/recipes/" + String(id) + "/information?includeNutrition=false"
         let request = NSMutableURLRequest(url: NSURL(string: urlString)! as URL)
         request.addValue("kX0oe5UPsGmsh4IvUqlXBP1Gr6USp1Oub8SjsnmwjLrnCRGq8x",forHTTPHeaderField: "X-Mashape-Key")
@@ -217,9 +220,10 @@ class PullCalls {
                     print("nil search value")
                     return
                 }
-                detailedRecipe = search
+                print(search)
+                thisRecipeDetails = search
                 DispatchQueue.main.async {
-                    completion(detailedRecipe)
+                    completion(thisRecipeDetails)
                 }
             }
         }

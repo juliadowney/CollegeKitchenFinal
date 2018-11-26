@@ -22,7 +22,7 @@ class RecipeInfoViewController: UIViewController {
         super.viewDidLoad()
         recipeTitle.text = currentRecipe.title
         
-        let imageName  = "https://spoonacular.com/cdn/recipes_100x100/" + currentRecipe.image
+        let imageName  =  currentRecipe.image
         
         let imageURL = URL(string:imageName)
         let data = NSData(contentsOf: imageURL!)
@@ -33,14 +33,22 @@ class RecipeInfoViewController: UIViewController {
     }
 
     func getRecipeDetails(){
+       var recipeIngredients:[Ingredient]!
         pull.getRecipeDetails(id: currentRecipe.id){ pulledRecipeDetails in
             let recipeDetails:RecipeDetails = pulledRecipeDetails
-            let recipeIngredients:[Ingredient] = recipeDetails.extendedIngredients
-            for ingredient in recipeIngredients {
-                ingredientLabel.text = ingredientLabel.text! + String(format:"%2.f", ingredient.amount!) + " " + ingredient.unitLong + " " + ingredient.name + " \n"
+            recipeIngredients = recipeDetails.extendedIngredients
+           print ("HEEEEEeeeeeeeeRe")
+            print (recipeDetails)
             }
-            }
-        
+        print ("HEEEEEeeeeeeeeRe")
+        print (recipeIngredients)
+       /* for ingredient in recipeIngredients {
+            let ingredientAmount:String = String(format:"%2.f", ingredient.amount!)
+            let ingredientUnit:String = ingredient.unitLong!
+            let ingredientName:String =  ingredient.name!
+         ingredientLabel.text = ingredientLabel.text! + ingredientAmount  + " " +  ingredientUnit + " " + ingredientName + " \n"
+         }
+        */
     }
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()

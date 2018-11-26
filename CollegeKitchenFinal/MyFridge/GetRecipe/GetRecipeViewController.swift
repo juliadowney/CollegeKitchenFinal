@@ -11,17 +11,20 @@ import UIKit
 class GetRecipeViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
     
     var getRecipeArray:[Recipe] = []
+    var thisRecipe:Recipe!
     var fridgeIngredients:[Ingredient] = []
     var fridgeIngredientNames:[String]=[]
     let pull = PullCalls()
     let activityIndicator = UIActivityIndicatorView(activityIndicatorStyle: .whiteLarge)
 
+    @IBOutlet weak var testView: UIView!
     @IBOutlet weak var theTableView: UITableView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         theTableView.dataSource = self
-        
+        theTableView.delegate = self
+        testView.isHidden = true
         activityIndicator.backgroundColor = UIColor.white
         activityIndicator.frame = CGRect(x: view.frame.minX, y: theTableView.frame.minY, width: view.frame.width, height: view.frame.height)
         view.addSubview(activityIndicator)
@@ -90,11 +93,18 @@ class GetRecipeViewController: UIViewController, UITableViewDataSource, UITableV
         return myCell
     }
     
+    
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let vc = RecipeInfoViewController()
-        print ("hi")
-        vc.currentRecipe = getRecipeArray[indexPath.row]
-        navigationController?.pushViewController(vc, animated: true)
-    }
+        testView.isHidden=false
+        var thisRecipeDetails:RecipeDetails!
+        pull.getRecipeDetails(id: getRecipeArray[indexPath.row].id){pullRecipeDetails in
+            thisRecipeDetails = pullRecipeDetails
+        }
+        print ("HEEEERE")
+        print (thisRecipeDetails)
+        }
+  
+    
+    
     
 }
