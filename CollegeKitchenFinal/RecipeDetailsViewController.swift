@@ -29,7 +29,7 @@ class RecipeDetailsViewController: UIViewController {
 
     func getRecipeDetails() {
         
-        pull.getRecipeDetails(id: currentRecipe.id){recipeDetailPull in
+        pull.getRecipeDetails(id: currentRecipeDetails.id){recipeDetailPull in
             self.currentRecipeDetails = recipeDetailPull
         }
         print ("HEEEEEEEEEEEEEEERE")

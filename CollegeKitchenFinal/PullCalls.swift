@@ -42,11 +42,13 @@ class PullCalls {
                     searchIngredients.append(ingredient)
                     //print("added?")
                     //print(self.searchIngredients)
+                }
+                
                     DispatchQueue.main.async {
                         completion(searchIngredients)
                     }
                     
-                }
+                
                 
             }
             print(6)
@@ -204,6 +206,7 @@ class PullCalls {
     typealias getRecipesDetailsResult = (RecipeDetails) -> ()
 
     func getRecipeDetails(id: Int, completion: @escaping getRecipesDetailsResult){
+        
         var thisRecipeDetails:RecipeDetails!
         
         let urlString = "https://spoonacular-recipe-food-nutrition-v1.p.mashape.com/recipes/" + String(id) + "/information?includeNutrition=false"

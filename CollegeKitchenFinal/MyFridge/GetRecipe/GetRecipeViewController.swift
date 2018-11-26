@@ -93,15 +93,32 @@ class GetRecipeViewController: UIViewController, UITableViewDataSource, UITableV
         return myCell
     }
     
-    
+    var thisRecipeDetails:RecipeDetails!
+
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        testView.isHidden=false
-        var thisRecipeDetails:RecipeDetails!
-        pull.getRecipeDetails(id: getRecipeArray[indexPath.row].id){pullRecipeDetails in
-            thisRecipeDetails = pullRecipeDetails
-        }
-        print ("HEEEERE")
-        print (thisRecipeDetails)
+        print("above dispatch")
+            DispatchQueue.global(qos: .userInitiated).async {
+                print("in dispatch")
+                self.pull.getRecipeDetails(id: self.getRecipeArray[indexPath.row].id){pullRecipeDetails in
+                    self.thisRecipeDetails = pullRecipeDetails
+                    print("got pull")
+                
+                DispatchQueue.main.async {
+                    
+                    self.theTableView.reloadData()
+
+                    print ("in main")
+                    print (self.thisRecipeDetails)
+                    print("^^^^^^^^^^^^^^^^^^^^")
+                    let vc = RecipeDetailsViewController()
+                    vc.currentRecipeDetails = self.thisRecipeDetails
+                    self.navigationController?.pushViewController(vc, animated: true)
+                    
+                }
+                }
+            }
+        
+     
         }
   
     
