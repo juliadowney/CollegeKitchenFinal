@@ -11,39 +11,60 @@ import UIKit
 class RecipeDetailsViewController: UIViewController {
     
     let pull = PullCalls()
-    var currentRecipe:Recipe!
     var currentRecipeDetails:RecipeDetails!
-    var recipeIngredients:[Ingredient]!
-
+    var recipeIngredientsArray:[Ingredient]!
+    
+    @IBOutlet weak var recipeImage: UIImageView!
+    @IBOutlet weak var recipeIngredients: UILabel!
+    
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        getRecipeDetails()
+        recipeIngredients.numberOfLines = 0;
+        
+
+        setUpRecipeDetails()
         // Do any additional setup after loading the view.
     }
-
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
     
-
-    func getRecipeDetails() {
+    func setUpRecipeDetails(){
+      
+        let imageURL = URL(string:currentRecipeDetails.image)
+        let data = NSData(contentsOf: imageURL!)
+        recipeImage.image =  UIImage(data: data! as Data)
+        setUpIngredients()
+    }
+  
+    func setUpIngredients(){
+        recipeIngredientsArray = currentRecipeDetails.extendedIngredients
         
-        pull.getRecipeDetails(id: currentRecipeDetails.id){recipeDetailPull in
-            self.currentRecipeDetails = recipeDetailPull
+        for ingredient in recipeIngredientsArray{
+            
+            var ingredientUnit:String = ""
+            let ingredientAmount = String(format:"%2.f", ingredient.amount!) + " "
+            
+            if ((ingredient.unitLong) != nil) {
+            ingredientUnit = ingredient.unitLong! + " "
+            }
+            
+            let ingredientName = ingredient.name! + " \n"
+            recipeIngredients.text = recipeIngredients.text! + ingredientAmount + ingredientUnit + ingredientName
         }
-        print ("HEEEEEEEEEEEEEEERE")
-        print (currentRecipeDetails)
     }
-    
     /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
+     // MARK: - Navigation
+     
+     // In a storyboard-based application, you will often want to do a little preparation before navigation
+     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+     // Get the new view controller using segue.destinationViewController.
+     // Pass the selected object to the new view controller.
+     }
+     */
+    
 }
