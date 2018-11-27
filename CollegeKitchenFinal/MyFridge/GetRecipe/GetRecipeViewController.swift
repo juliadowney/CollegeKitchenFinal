@@ -11,17 +11,20 @@ import UIKit
 class GetRecipeViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
     
     var getRecipeArray:[Recipe] = []
+    var thisRecipe:Recipe!
     var fridgeIngredients:[Ingredient] = []
     var fridgeIngredientNames:[String]=[]
     let pull = PullCalls()
     let activityIndicator = UIActivityIndicatorView(activityIndicatorStyle: .whiteLarge)
 
+    @IBOutlet weak var testView: UIView!
     @IBOutlet weak var theTableView: UITableView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         theTableView.dataSource = self
-        
+        theTableView.delegate = self
+        testView.isHidden = true
         activityIndicator.backgroundColor = UIColor.white
         activityIndicator.frame = CGRect(x: view.frame.minX, y: theTableView.frame.minY, width: view.frame.width, height: view.frame.height)
         view.addSubview(activityIndicator)
@@ -89,4 +92,36 @@ class GetRecipeViewController: UIViewController, UITableViewDataSource, UITableV
        myCell.displayCell(recipeName: getRecipeArray[indexPath.row].title, recipeImageString: getRecipeArray[indexPath.row].image)
         return myCell
     }
+    
+    var thisRecipeDetails:RecipeDetails!
+
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        print("above dispatch")
+            DispatchQueue.global(qos: .userInitiated).async {
+                print("in dispatch")
+                self.pull.getRecipeDetails(id: self.getRecipeArray[indexPath.row].id){pullRecipeDetails in
+                    self.thisRecipeDetails = pullRecipeDetails
+                    print("got pull")
+                
+                DispatchQueue.main.async {
+                    
+                    self.theTableView.reloadData()
+
+                    print ("in main")
+                    print (self.thisRecipeDetails)
+                    print("^^^^^^^^^^^^^^^^^^^^")
+                    let vc = RecipeDetailsViewController()
+                    vc.currentRecipeDetails = self.thisRecipeDetails
+                    self.navigationController?.pushViewController(vc, animated: true)
+                    
+                }
+                }
+            }
+        
+     
+        }
+  
+    
+    
+    
 }

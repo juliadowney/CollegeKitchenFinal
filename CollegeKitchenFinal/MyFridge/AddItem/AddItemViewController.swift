@@ -84,6 +84,7 @@ class AddItemViewController: UIViewController, UISearchBarDelegate, UITableViewD
 
 
         var convertedServings:ConvertedAmount!
+        
             self.pull.convertAmounts(ingredientName: self.currentIngredient.name, sourceAmount: quantity!, sourceUnit: self.unitText.text!, targetUnit: "servings") {convertedAmount in
                 convertedServings = convertedAmount
                 print (self.currentIngredient.name)
@@ -129,16 +130,18 @@ class AddItemViewController: UIViewController, UISearchBarDelegate, UITableViewD
         activityIndicator.startAnimating()
         view.endEditing(true) // closes the keyboard
         let searchString = self.searchBar.text! // text from search bar
-
+        print("above dispatch")
         DispatchQueue.global(qos: .userInitiated).async {
-
+            
             self.searchIngredients.removeAll() // clears the current search ingredient array
-        
-        // pull ingredients from API (pull is an 'object' of PullCalls as declared in beginning of this file)
+            print("in dispatch")
+            // pull ingredients from API (pull is an 'object' of PullCalls as declared in beginning of this file)
             self.pull.ingredientSearch(query: searchString) {searchedIngredients in
+                print("got pull")
             self.searchIngredients = searchedIngredients
                 DispatchQueue.main.async {
                     self.activityIndicator.stopAnimating()
+                    print("in main")
                     self.theTableView.reloadData()
                 }
         }

@@ -42,11 +42,13 @@ class PullCalls {
                     searchIngredients.append(ingredient)
                     //print("added?")
                     //print(self.searchIngredients)
+                }
+                
                     DispatchQueue.main.async {
                         completion(searchIngredients)
                     }
                     
-                }
+                
                 
             }
             print(6)
@@ -195,6 +197,36 @@ class PullCalls {
                 }
                 DispatchQueue.main.async {
                     completion(recipeResults)
+                }
+            }
+        }
+        tache.resume()
+    }
+    
+    typealias getRecipesDetailsResult = (RecipeDetails) -> ()
+
+    func getRecipeDetails(id: Int, completion: @escaping getRecipesDetailsResult){
+        
+        var thisRecipeDetails:RecipeDetails!
+        
+        let urlString = "https://spoonacular-recipe-food-nutrition-v1.p.mashape.com/recipes/" + String(id) + "/information?includeNutrition=false"
+        let request = NSMutableURLRequest(url: NSURL(string: urlString)! as URL)
+        request.addValue("kX0oe5UPsGmsh4IvUqlXBP1Gr6USp1Oub8SjsnmwjLrnCRGq8x",forHTTPHeaderField: "X-Mashape-Key")
+        request.addValue("application/json",forHTTPHeaderField: "Accept")
+        let session = URLSession.shared
+        request.httpMethod = "GET"
+        let tache = session.dataTask(with: request as URLRequest) { (data, response, error) -> Void in
+            if let jsonData = data {
+                print(jsonData)
+                let json = JSONDecoder()
+                guard let search = try? json.decode(RecipeDetails.self, from: jsonData) else {
+                    print("nil search value")
+                    return
+                }
+                print(search)
+                thisRecipeDetails = search
+                DispatchQueue.main.async {
+                    completion(thisRecipeDetails)
                 }
             }
         }
