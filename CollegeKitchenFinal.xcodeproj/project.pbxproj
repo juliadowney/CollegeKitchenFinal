@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		5919095821AA1BE400C47398 /* RecipeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5919095721AA1BE400C47398 /* RecipeViewController.swift */; };
 		6C8F5D2921A204F90042C090 /* IngredientSearch.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C8F5D1D21A204F80042C090 /* IngredientSearch.swift */; };
 		6C8F5D2B21A204F90042C090 /* EstimatedCostAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C8F5D1F21A204F80042C090 /* EstimatedCostAPI.swift */; };
 		6C8F5D2C21A204F90042C090 /* Joke.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C8F5D2021A204F80042C090 /* Joke.swift */; };
@@ -50,6 +51,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		5919095721AA1BE400C47398 /* RecipeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeViewController.swift; sourceTree = "<group>"; };
 		6C8F5D1D21A204F80042C090 /* IngredientSearch.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IngredientSearch.swift; sourceTree = "<group>"; };
 		6C8F5D1F21A204F80042C090 /* EstimatedCostAPI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EstimatedCostAPI.swift; sourceTree = "<group>"; };
 		6C8F5D2021A204F80042C090 /* Joke.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Joke.swift; sourceTree = "<group>"; };
@@ -142,6 +144,7 @@
 			children = (
 				6C8F5D2721A204F90042C090 /* Recipe.swift */,
 				6C8F5D2221A204F90042C090 /* RecipeDetails.swift */,
+				5919095721AA1BE400C47398 /* RecipeViewController.swift */,
 			);
 			path = myRecipe;
 			sourceTree = "<group>";
@@ -344,6 +347,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5919095821AA1BE400C47398 /* RecipeViewController.swift in Sources */,
 				6CB03CAD21A8E68A00530BA9 /* myFridgeTableViewCell.swift in Sources */,
 				7B3F14A921A2018200A235E2 /* ViewController.swift in Sources */,
 				6C8F5D2C21A204F90042C090 /* Joke.swift in Sources */,
