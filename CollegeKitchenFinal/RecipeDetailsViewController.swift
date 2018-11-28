@@ -14,6 +14,7 @@ class RecipeDetailsViewController: UIViewController {
     var currentRecipeDetails:RecipeDetails!
     var recipeIngredientsArray:[Ingredient]!
     
+    @IBOutlet weak var recipeTitle: UILabel!
     @IBOutlet weak var recipeImage: UIImageView!
     @IBOutlet weak var recipeIngredients: UILabel!
     
@@ -37,7 +38,7 @@ class RecipeDetailsViewController: UIViewController {
     }
     
     func setUpRecipeDetails(){
-      
+        recipeTitle.text = currentRecipeDetails.title
         let imageURL = URL(string:currentRecipeDetails.image)
         let data = NSData(contentsOf: imageURL!)
         recipeImage.image =  UIImage(data: data! as Data)
@@ -52,8 +53,8 @@ class RecipeDetailsViewController: UIViewController {
             var ingredientUnit:String = ""
             let ingredientAmount = String(format:"%2.f", ingredient.amount!) + " "
             
-            if ((ingredient.unitLong) != nil) {
-            ingredientUnit = ingredient.unitLong! + " "
+            if ((ingredient.unit) != nil) {
+            ingredientUnit = ingredient.unit! + " "
             }
             
             let ingredientName = ingredient.name! + " \n"

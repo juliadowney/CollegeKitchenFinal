@@ -23,7 +23,7 @@ class MyFridgeViewController: UIViewController, UITableViewDataSource, UITableVi
         func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
             let myCell:myFridgeTableViewCell = tableView.dequeueReusableCell(withIdentifier: "fridgeCell")! as! myFridgeTableViewCell
             let ingredient = myFridgeIngredients[indexPath.row]
-            myCell.displayCell(name: ingredient.name!, amount: ingredient.amount!, unit: ingredient.unitLong!)
+            myCell.displayCell(name: ingredient.name!, amount: ingredient.amount!, unit: ingredient.unit!)
             return myCell
         }
         

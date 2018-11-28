@@ -90,7 +90,7 @@ class AddItemViewController: UIViewController, UISearchBarDelegate, UITableViewD
                 print (self.currentIngredient.name)
                 print ((convertedServings.targetAmount))
                 self.pull.parseIngredient(ingredientName: self.currentIngredient.name, servings: Int(convertedServings.targetAmount)){newObject in
-                    let newIngredient:Ingredient = Ingredient(id: newObject.id!, name: newObject.name!, amount: quantity, unitLong: self.unitText.text!)
+                    let newIngredient:Ingredient = Ingredient(id: newObject.id!, name: newObject.name!, amount: quantity, unit: self.unitText.text!)
                     
                         print (newIngredient)
                     //// PLIST - newIngredient needs to be stored in myFridge plist
@@ -103,7 +103,7 @@ class AddItemViewController: UIViewController, UISearchBarDelegate, UITableViewD
                         dict.setValue(currentList, forKey: "myFridge")
                         dict.write(toFile: path!, atomically: true)
 
-                    self.pull.getEstimatedCost(id: newIngredient.id!, amount: newIngredient.amount!, unit: newIngredient.unitLong!){estimatedCostResult in
+                    self.pull.getEstimatedCost(id: newIngredient.id!, amount: newIngredient.amount!, unit: newIngredient.unit!){estimatedCostResult in
                             let estimatedCost:EstimatedCost = estimatedCostResult
                             print (estimatedCost)
                         //// PLIST - estimatedCost needs to be subtracted from budget plist (keep mind of US Cents vs US Dollars)

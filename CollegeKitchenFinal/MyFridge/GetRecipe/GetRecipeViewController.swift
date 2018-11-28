@@ -24,7 +24,6 @@ class GetRecipeViewController: UIViewController, UITableViewDataSource, UITableV
         super.viewDidLoad()
         theTableView.dataSource = self
         theTableView.delegate = self
-        testView.isHidden = true
         activityIndicator.backgroundColor = UIColor.white
         activityIndicator.frame = CGRect(x: view.frame.minX, y: theTableView.frame.minY, width: view.frame.width, height: view.frame.height)
         view.addSubview(activityIndicator)
