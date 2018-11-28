@@ -10,5 +10,7 @@
 	<integer>0</integer>
 	<key>myFridge</key>
 	<array/>
+	<key>myRecipe</key>
+	<array/>
 </dict>
 </plist>

@@ -17,6 +17,9 @@ class RecipeDetailsViewController: UIViewController {
     @IBOutlet weak var recipeImage: UIImageView!
     @IBOutlet weak var recipeIngredients: UILabel!
     
+    //Save Recipe Button 
+    @IBAction func saveRecipe(_ sender: Any) {
+    }
     
     
     override func viewDidLoad() {

@@ -526,30 +526,44 @@
         <!--MyRecipes-->
         <scene sceneID="57A-HZ-77Y">
             <objects>
-                <viewController id="2su-bf-1Sj" sceneMemberID="viewController">
+                <viewController id="2su-bf-1Sj" customClass="myRecipeViewController" customModule="CollegeKitchenFinal" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="ExU-xe-g4v">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="AP4-6s-xRe">
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="uQn-Jq-aiM">
                                 <rect key="frame" x="0.0" y="64" width="375" height="554"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                            </tableView>
+                                <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="1aB-aC-tmA">
+                                    <size key="itemSize" width="115" height="116"/>
+                                    <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                    <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                    <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                </collectionViewFlowLayout>
+                                <cells>
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="myRecipeCell" id="AZ2-g2-BoW">
+                                        <rect key="frame" x="0.0" y="0.0" width="115" height="116"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO">
+                                            <rect key="frame" x="0.0" y="0.0" width="115" height="116"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                        </view>
+                                    </collectionViewCell>
+                                </cells>
+                            </collectionView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        <constraints>
-                            <constraint firstItem="AP4-6s-xRe" firstAttribute="top" secondItem="tFr-nt-tX6" secondAttribute="top" id="NM5-DL-pGz"/>
-                            <constraint firstItem="AP4-6s-xRe" firstAttribute="leading" secondItem="tFr-nt-tX6" secondAttribute="leading" id="ZIc-6x-42R"/>
-                            <constraint firstItem="tFr-nt-tX6" firstAttribute="trailing" secondItem="AP4-6s-xRe" secondAttribute="trailing" id="fAw-fz-c95"/>
-                            <constraint firstItem="tFr-nt-tX6" firstAttribute="bottom" secondItem="AP4-6s-xRe" secondAttribute="bottom" id="upj-Jf-DCO"/>
-                        </constraints>
                         <viewLayoutGuide key="safeArea" id="tFr-nt-tX6"/>
                     </view>
                     <navigationItem key="navigationItem" title="MyRecipes" id="FJR-Up-0wg"/>
+                    <connections>
+                        <outlet property="myRecipeCollectionView" destination="uQn-Jq-aiM" id="gcN-eq-gXZ"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="D3d-mY-tQf" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1348" y="1843"/>
+            <point key="canvasLocation" x="1348" y="1842.7286356821592"/>
         </scene>
         <!--MyFridge-->
         <scene sceneID="yA9-up-O9e">
