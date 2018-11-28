@@ -99,7 +99,7 @@ class AddItemViewController: UIViewController, UISearchBarDelegate, UITableViewD
                         var currentList = dict.object(forKey: "myFridge") as! Array<Data>
                         let data = try! JSONEncoder().encode(newIngredient)
                     
-
+                    print("new Ingredient == \(newIngredient)")
                     self.pull.getEstimatedCost(id: newIngredient.id!, amount: newIngredient.amount!, unit: newIngredient.unit!){estimatedCostResult in
                             let estimatedCost:EstimatedCost = estimatedCostResult
                         //// PLIST - estimatedCost needs to be subtracted from budget plist (keep mind of US Cents vs US Dollars)
