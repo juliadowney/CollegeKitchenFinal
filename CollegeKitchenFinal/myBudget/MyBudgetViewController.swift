@@ -13,6 +13,7 @@ class MyBudgetViewController: UIViewController {
     var budgetValue:Double = 0
     var spentValue:Double = 0
     var availValue:Double = 0
+    
 
     @IBOutlet weak var budgetValLabel: UILabel!
     @IBOutlet weak var spentValLabel: UILabel!
@@ -29,13 +30,16 @@ class MyBudgetViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         displayBudget()
         backgroundView.isHidden = true
         resetBudPopUp.isHidden = true
         editBudPopUp.isHidden = true
         
         // Do any additional setup after loading the view.
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+      displayBudget()
     }
 
     override func didReceiveMemoryWarning() {
@@ -61,6 +65,13 @@ class MyBudgetViewController: UIViewController {
         else {
             if (addSubSelector.selectedSegmentIndex == 0){
                  budgetValue = budgetValue + (NumberFormatter().number(from: editBudEntry.text!)?.doubleValue)!
+                let path = Bundle.main.path(forResource: "UserStorage", ofType: "plist")
+                let dict = NSMutableDictionary(contentsOfFile: path!)!
+                dict.setValue(budgetValue, forKey: "budgetVal")
+                dict.setValue(spentValue, forKey: "spentVal")
+                availValue = budgetValue - spentValue
+                dict.setValue(availValue, forKey: "availVal")
+                dict.write(toFile: path!, atomically: true)
                 displayBudget()
                 backgroundView.isHidden = true
                 editBudPopUp.isHidden = true
@@ -68,6 +79,13 @@ class MyBudgetViewController: UIViewController {
             else {
                 if (budgetValue - (NumberFormatter().number(from: editBudEntry.text!)?.doubleValue)! > 0){
                    budgetValue = budgetValue - (NumberFormatter().number(from: editBudEntry.text!)?.doubleValue)!
+                    let path = Bundle.main.path(forResource: "UserStorage", ofType: "plist")
+                    let dict = NSMutableDictionary(contentsOfFile: path!)!
+                    dict.setValue(budgetValue, forKey: "budgetVal")
+                    dict.setValue(spentValue, forKey: "spentVal")
+                    availValue = budgetValue - spentValue
+                    dict.setValue(availValue, forKey: "availVal")
+                    dict.write(toFile: path!, atomically: true)
                 displayBudget()
                 backgroundView.isHidden = true
                editBudPopUp.isHidden = true
@@ -79,13 +97,19 @@ class MyBudgetViewController: UIViewController {
             
         }
         
+       
     }
     
+    
     func displayBudget(){
-        availValue = budgetValue - spentValue
-        budgetValLabel.text = "$" + String(format:"%2.f", budgetValue)
-        spentValLabel.text = "$" + String(format:"%2.f", spentValue)
-        availValLabel.text = "$" + String(format:"%2.f", availValue)
+        let path = Bundle.main.path(forResource: "UserStorage", ofType: "plist")
+        let dict = NSMutableDictionary(contentsOfFile: path!)!
+        budgetValue = dict.object(forKey: "budgetVal") as! Double
+        spentValue = dict.object(forKey: "spentVal") as! Double
+        availValue = dict.object(forKey: "availVal") as! Double
+        budgetValLabel.text = "$" + String(format:"%.2f", budgetValue)
+        spentValLabel.text = "$" + String(format:"%.2f", spentValue)
+        availValLabel.text = "$" + String(format:"%.2f", availValue)
     }
     
     @IBAction func doneResetBudget(_ sender: Any) {
@@ -97,6 +121,13 @@ class MyBudgetViewController: UIViewController {
         else{
             budgetValue = (NumberFormatter().number(from: resetBudEntry.text!)?.doubleValue)!
             spentValue = 0.0
+            let path = Bundle.main.path(forResource: "UserStorage", ofType: "plist")
+            let dict = NSMutableDictionary(contentsOfFile: path!)!
+            dict.setValue(budgetValue, forKey: "budgetVal")
+            dict.setValue(spentValue, forKey: "spentVal")
+            availValue = budgetValue - spentValue
+            dict.setValue(availValue, forKey: "availVal")
+            dict.write(toFile: path!, atomically: true)
             displayBudget()
             backgroundView.isHidden = true
             resetBudPopUp.isHidden = true
