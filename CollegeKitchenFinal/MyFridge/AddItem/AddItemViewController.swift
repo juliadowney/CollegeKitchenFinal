@@ -90,7 +90,7 @@ class AddItemViewController: UIViewController, UISearchBarDelegate, UITableViewD
                 print (self.currentIngredient.name)
                 print ((convertedServings.targetAmount))
                 self.pull.parseIngredient(ingredientName: self.currentIngredient.name, servings: Int(convertedServings.targetAmount)){newObject in
-                    let newIngredient:Ingredient = Ingredient(id: newObject.id!, name: newObject.name!, amount: quantity, unitLong: self.unitText.text!)
+                    let newIngredient:Ingredient = Ingredient(id: newObject.id!, name: newObject.name!, amount: quantity, unit: self.unitText.text!)
                     
                         print (newIngredient)
                     //// PLIST - newIngredient needs to be stored in myFridge plist
@@ -98,15 +98,40 @@ class AddItemViewController: UIViewController, UISearchBarDelegate, UITableViewD
                         let dict = NSMutableDictionary(contentsOfFile: path!)!
                         var currentList = dict.object(forKey: "myFridge") as! Array<Data>
                         let data = try! JSONEncoder().encode(newIngredient)
-                        currentList.append(data)
                     
-                        dict.setValue(currentList, forKey: "myFridge")
-                        dict.write(toFile: path!, atomically: true)
-
-                    self.pull.getEstimatedCost(id: newIngredient.id!, amount: newIngredient.amount!, unit: newIngredient.unitLong!){estimatedCostResult in
+                    print("new Ingredient == \(newIngredient)")
+                    self.pull.getEstimatedCost(id: newIngredient.id!, amount: newIngredient.amount!, unit: newIngredient.unit!){estimatedCostResult in
                             let estimatedCost:EstimatedCost = estimatedCostResult
-                            print (estimatedCost)
                         //// PLIST - estimatedCost needs to be subtracted from budget plist (keep mind of US Cents vs US Dollars)
+                        
+                        let availValue = dict.object(forKey: "availVal") as! Double
+                        var spentValue = dict.object(forKey: "spentVal") as! Double
+                        let costValueInCents = estimatedCost.value
+                        let costInDollars = Double(String(format: "%.2f", costValueInCents/100))
+                        var newAvail:Double = 0.0
+                        newAvail = availValue - costInDollars!
+                        let formattedString = String(format: "%.2f", newAvail)
+                        let formattedDouble = Double(formattedString)
+                        let alert = UIAlertController(title: "Budget Exceeded", message: "The estimated cost for the item you wish to add is $\(costInDollars!) and your available funds are $\(availValue)", preferredStyle: .alert)
+                        
+                        alert.addAction(UIAlertAction(title: "Cancel", style: .default, handler: nil))
+                        print("cost in dollars == \(costInDollars!)")
+                        print("new available amount == \(newAvail)")
+                        print("cost in cents == \(costValueInCents)")
+                        print("estimated cost object == \(estimatedCostResult)")
+                        if(newAvail < 0){
+                            self.present(alert, animated: true)
+                        }else{
+                            spentValue = spentValue + costInDollars!
+                            dict.setValue(spentValue, forKey: "spentVal")
+                            dict.setValue(formattedDouble!, forKey: "availVal")
+                            dict.write(toFile: path!, atomically: true)
+                            currentList.append(data)
+                            dict.setValue(currentList, forKey: "myFridge")
+                            dict.write(toFile: path!, atomically: true)
+                        }
+                        
+                    
                         self.backgroundWindow.isHidden = true
                         self.setView(view: self.popUpWindow, hidden: true)
 
@@ -200,7 +225,18 @@ class AddItemViewController: UIViewController, UISearchBarDelegate, UITableViewD
             view.isHidden = hidden
         })
     }
-    
+    override func viewWillAppear(_ animated: Bool) {
+        
+        let path = Bundle.main.path(forResource: "UserStorage", ofType: "plist")
+        let dict = NSMutableDictionary(contentsOfFile: path!)!
+        let budgetValue = dict.object(forKey: "budgetVal") as! Double
+        let alert = UIAlertController(title: "Missing Budget", message: "Please go to the myBudget tab and enter a budget before adding items to your fridge", preferredStyle: .alert)
+        
+        alert.addAction(UIAlertAction(title: "Cancel", style: .default, handler: nil))
+        if(budgetValue == 0){
+            self.present(alert, animated: true)
+        }
+    }
     override func viewDidLoad() {
         
         super.viewDidLoad()
@@ -223,6 +259,23 @@ class AddItemViewController: UIViewController, UISearchBarDelegate, UITableViewD
         self.theTableView.dataSource = self
         self.theTableView.delegate = self
         theTableView.rowHeight = 68
+        
+        
+        let path = Bundle.main.path(forResource: "UserStorage", ofType: "plist")
+        let dict = NSMutableDictionary(contentsOfFile: path!)!
+        let budgetValue = dict.object(forKey: "budgetVal") as! Double
+       
+        let alert = UIAlertController(title: "Missing Budget", message: "Please go to the myBudget tab and enter a budget before adding items to your fridge", preferredStyle: .alert)
+        
+        alert.addAction(UIAlertAction(title: "OK", style: .default, handler: { _ in
+            let uivc = self.storyboard!.instantiateViewController(withIdentifier: "myBudgetController")
+            self.navigationController!.pushViewController(uivc, animated: true)
+        }))
+        
+        
+        if(budgetValue == 0){
+            self.present(alert, animated: true)
+        }
         
     }
     override func didReceiveMemoryWarning() {

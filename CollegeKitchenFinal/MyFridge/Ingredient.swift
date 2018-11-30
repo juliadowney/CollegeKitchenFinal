@@ -12,5 +12,5 @@ struct Ingredient:Codable{
     let id:Int?
     let name:String?
     let amount:Double?
-    let unitLong:String?
+    let unit:String?
 }

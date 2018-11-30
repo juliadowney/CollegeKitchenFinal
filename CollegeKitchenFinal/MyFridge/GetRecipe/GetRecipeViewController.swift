@@ -24,7 +24,6 @@ class GetRecipeViewController: UIViewController, UITableViewDataSource, UITableV
         super.viewDidLoad()
         theTableView.dataSource = self
         theTableView.delegate = self
-        testView.isHidden = true
         activityIndicator.backgroundColor = UIColor.white
         activityIndicator.frame = CGRect(x: view.frame.minX, y: theTableView.frame.minY, width: view.frame.width, height: view.frame.height)
         view.addSubview(activityIndicator)
@@ -97,6 +96,8 @@ class GetRecipeViewController: UIViewController, UITableViewDataSource, UITableV
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         print("above dispatch")
+        activityIndicator.startAnimating()
+
             DispatchQueue.global(qos: .userInitiated).async {
                 print("in dispatch")
                 self.pull.getRecipeDetails(id: self.getRecipeArray[indexPath.row].id){pullRecipeDetails in
@@ -112,6 +113,7 @@ class GetRecipeViewController: UIViewController, UITableViewDataSource, UITableV
                     print("^^^^^^^^^^^^^^^^^^^^")
                     let vc = RecipeDetailsViewController()
                     vc.currentRecipeDetails = self.thisRecipeDetails
+                    self.activityIndicator.stopAnimating()
                     self.navigationController?.pushViewController(vc, animated: true)
                     
                 }
