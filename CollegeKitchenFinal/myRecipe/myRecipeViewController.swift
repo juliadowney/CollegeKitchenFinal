@@ -41,9 +41,9 @@ class myRecipeViewController: UICollectionViewController {
     }
     
     //Get Recipe Images
-    func getRecipeImage(){
-        
-    }
+    //func getRecipeImage(){
+     //
+    //}
 
 
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
