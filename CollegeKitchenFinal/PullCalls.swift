@@ -232,4 +232,26 @@ class PullCalls {
         }
         tache.resume()
     }
+    
+    typealias getJoke = (Joke) -> ()
+
+    func getFoodJoke(completion: @escaping getJoke){
+        var returnJoke: Joke!
+        let urlString = "https://spoonacular-recipe-food-nutrition-v1.p.mashape.com/food/jokes/random"
+        let request = NSMutableURLRequest(url: NSURL(string: urlString)! as URL)
+        request.addValue("kX0oe5UPsGmsh4IvUqlXBP1Gr6USp1Oub8SjsnmwjLrnCRGq8x",forHTTPHeaderField: "X-Mashape-Key")
+        request.addValue("application/json",forHTTPHeaderField: "Accept")
+        let session = URLSession.shared
+        request.httpMethod = "GET"
+        let tache = session.dataTask(with: request as URLRequest) { (data, response, error) -> Void in
+            if let jsonData = data {
+                let json = JSONDecoder()
+                returnJoke = try? json.decode(Joke.self, from: jsonData)
+                DispatchQueue.main.async {
+                    completion(returnJoke)
+                }
+            }
+        }
+        tache.resume()
+    }
 }
