@@ -724,7 +724,7 @@
         <scene sceneID="7wc-qU-lee">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="5G7-w3-G3f" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="MyProfile" image="solidHat" selectedImage="icons8-chef-hat-60" id="Z2Y-iy-uky">
+                    <tabBarItem key="tabBarItem" title="MyProfile" image="solidHat" selectedImage="solidHat" id="Z2Y-iy-uky">
                         <color key="badgeColor" red="0.27058823529999998" green="0.52156862749999999" blue="0.47843137250000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </tabBarItem>
                     <toolbarItems/>
@@ -754,7 +754,6 @@
         <image name="big" width="25" height="25"/>
         <image name="budget" width="12" height="12"/>
         <image name="fridgy" width="25" height="25"/>
-        <image name="icons8-chef-hat-60" width="30" height="30"/>
         <image name="icons8-kitchen-filled-100" width="50" height="50"/>
         <image name="solidHat" width="25" height="25"/>
     </resources>
