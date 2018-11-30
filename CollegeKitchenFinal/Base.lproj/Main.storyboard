@@ -32,9 +32,8 @@
                                 <color key="textColor" red="0.72941176470588232" green="0.80000000000000004" blue="0.84313725490196079" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Your current budget:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="z7R-b9-byE">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Your current budget:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="z7R-b9-byE">
                                 <rect key="frame" x="28" y="355" width="176" height="23"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="19"/>
                                 <color key="textColor" red="0.72941176470000002" green="0.80000000000000004" blue="0.84313725490000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
@@ -48,8 +47,7 @@
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jTv-ep-t29">
                                 <rect key="frame" x="236" y="313" width="112" height="22"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="112" id="esW-8w-z4u"/>
-                                    <constraint firstAttribute="height" constant="22" id="sBp-Nr-f9G"/>
+                                    <constraint firstAttribute="width" constant="112" id="Ai8-XF-kpI"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" red="0.72941176470000002" green="0.80000000000000004" blue="0.84313725490000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -68,7 +66,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Whats Cooking Good Looking?" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="F7f-sa-X0b">
-                                <rect key="frame" x="27" y="85" width="321" height="48"/>
+                                <rect key="frame" x="39" y="85" width="296" height="48"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="48" id="tbT-Sh-5iD"/>
                                 </constraints>
@@ -80,30 +78,37 @@
                         <color key="backgroundColor" red="0.12549019607843137" green="0.14117647058823529" blue="0.23921568627450981" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="5Dc-N7-jZ6" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="1NZ-5U-56t"/>
-                            <constraint firstItem="jTv-ep-t29" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="wpj-17-xOU" secondAttribute="trailing" constant="8" symbolic="YES" id="1Uo-hY-K10"/>
-                            <constraint firstItem="wpj-17-xOU" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" constant="28" id="6yd-15-Ax6"/>
-                            <constraint firstItem="Peg-Qv-gEv" firstAttribute="top" secondItem="jTv-ep-t29" secondAttribute="bottom" constant="22" id="7iB-7K-KoF"/>
-                            <constraint firstItem="F7f-sa-X0b" firstAttribute="trailing" secondItem="bos-dW-HMu" secondAttribute="trailing" id="8nr-jj-AIv"/>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="bos-dW-HMu" secondAttribute="bottom" constant="189" id="DKu-2U-dxq"/>
-                            <constraint firstItem="F7f-sa-X0b" firstAttribute="trailing" secondItem="jTv-ep-t29" secondAttribute="trailing" id="F1g-HR-0y7"/>
-                            <constraint firstItem="jTv-ep-t29" firstAttribute="leading" secondItem="bos-dW-HMu" secondAttribute="leading" id="Grq-p2-x6a"/>
+                            <constraint firstItem="Peg-Qv-gEv" firstAttribute="trailing" secondItem="bos-dW-HMu" secondAttribute="trailing" id="1xl-Fz-Z92"/>
+                            <constraint firstItem="z7R-b9-byE" firstAttribute="baseline" secondItem="Peg-Qv-gEv" secondAttribute="firstBaseline" id="5Kg-Ak-SLP"/>
+                            <constraint firstItem="wpj-17-xOU" firstAttribute="leading" secondItem="z7R-b9-byE" secondAttribute="leading" id="78j-Gu-Y1E"/>
+                            <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="wpj-17-xOU" secondAttribute="trailing" constant="20" symbolic="YES" id="7Z2-1j-05J"/>
+                            <constraint firstItem="z7R-b9-byE" firstAttribute="leading" secondItem="7af-42-TBJ" secondAttribute="leading" id="KEw-Nr-Mgc"/>
                             <constraint firstItem="5Dc-N7-jZ6" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="61" id="MSQ-bZ-zNg"/>
+                            <constraint firstItem="jTv-ep-t29" firstAttribute="leading" secondItem="Peg-Qv-gEv" secondAttribute="leading" id="OTp-Qc-2YV"/>
+                            <constraint firstItem="wpj-17-xOU" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="28" id="Rur-aA-MlF"/>
+                            <constraint firstItem="jTv-ep-t29" firstAttribute="trailing" secondItem="Peg-Qv-gEv" secondAttribute="trailing" id="T6S-O9-6fz"/>
                             <constraint firstItem="F7f-sa-X0b" firstAttribute="centerX" secondItem="5Dc-N7-jZ6" secondAttribute="centerX" id="TCb-yZ-18e"/>
-                            <constraint firstItem="bos-dW-HMu" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="7af-42-TBJ" secondAttribute="trailing" symbolic="YES" id="Uek-Tl-OvP"/>
                             <constraint firstItem="F7f-sa-X0b" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="21" id="aIP-RC-pkG"/>
-                            <constraint firstItem="F7f-sa-X0b" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="27" id="dCj-hu-1wG"/>
-                            <constraint firstItem="jTv-ep-t29" firstAttribute="top" secondItem="5Dc-N7-jZ6" secondAttribute="bottom" constant="38" id="ecT-mX-okm"/>
-                            <constraint firstItem="7af-42-TBJ" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" constant="28" id="gQE-M3-wJW"/>
-                            <constraint firstItem="bos-dW-HMu" firstAttribute="top" secondItem="7af-42-TBJ" secondAttribute="top" id="ixC-Iw-39V"/>
-                            <constraint firstItem="bos-dW-HMu" firstAttribute="centerY" secondItem="7af-42-TBJ" secondAttribute="centerY" id="oKv-7d-d5U"/>
-                            <constraint firstItem="F7f-sa-X0b" firstAttribute="trailing" secondItem="Peg-Qv-gEv" secondAttribute="trailing" id="r0l-pW-Dt5"/>
-                            <constraint firstItem="bos-dW-HMu" firstAttribute="top" secondItem="Peg-Qv-gEv" secondAttribute="bottom" constant="28" id="t7B-V6-vpN"/>
-                            <constraint firstItem="jTv-ep-t29" firstAttribute="leading" secondItem="Peg-Qv-gEv" secondAttribute="leading" id="xnQ-IU-syn"/>
-                            <constraint firstItem="jTv-ep-t29" firstAttribute="firstBaseline" secondItem="wpj-17-xOU" secondAttribute="baseline" id="y6Z-Xn-alx"/>
+                            <constraint firstItem="wpj-17-xOU" firstAttribute="baseline" secondItem="jTv-ep-t29" secondAttribute="firstBaseline" id="cND-g9-nXh"/>
+                            <constraint firstItem="bos-dW-HMu" firstAttribute="top" secondItem="Peg-Qv-gEv" secondAttribute="bottom" constant="28" id="cRV-fw-m2t"/>
+                            <constraint firstItem="Peg-Qv-gEv" firstAttribute="leading" secondItem="bos-dW-HMu" secondAttribute="leading" id="eNM-Lu-ZL8"/>
+                            <constraint firstItem="z7R-b9-byE" firstAttribute="top" secondItem="wpj-17-xOU" secondAttribute="bottom" constant="21" id="hIq-hU-aBO"/>
+                            <constraint firstItem="7af-42-TBJ" firstAttribute="top" secondItem="z7R-b9-byE" secondAttribute="bottom" constant="29" id="l4S-Hs-Aos"/>
+                            <constraint firstItem="7af-42-TBJ" firstAttribute="centerY" secondItem="bos-dW-HMu" secondAttribute="centerY" id="owi-vT-MeI"/>
+                            <constraint firstItem="Peg-Qv-gEv" firstAttribute="leading" secondItem="z7R-b9-byE" secondAttribute="trailing" constant="32" id="pVm-Wa-rLp"/>
+                            <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="7af-42-TBJ" secondAttribute="trailing" constant="20" symbolic="YES" id="sYa-y1-1ej"/>
+                            <constraint firstItem="wpj-17-xOU" firstAttribute="top" secondItem="5Dc-N7-jZ6" secondAttribute="bottom" constant="36" id="v68-uQ-VmW"/>
+                            <constraint firstItem="Peg-Qv-gEv" firstAttribute="top" secondItem="jTv-ep-t29" secondAttribute="bottom" constant="22" id="yGg-vY-2yG"/>
+                            <constraint firstItem="7af-42-TBJ" firstAttribute="top" secondItem="bos-dW-HMu" secondAttribute="top" id="zTc-tC-SFP"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
                     <navigationItem key="navigationItem" title="CollegeKitchen" id="XN2-uy-oxJ"/>
+                    <connections>
+                        <outlet property="budgetCurr" destination="Peg-Qv-gEv" id="evK-ga-KQh"/>
+                        <outlet property="fridgeNum" destination="jTv-ep-t29" id="f3s-C5-YkO"/>
+                        <outlet property="receipieNum" destination="bos-dW-HMu" id="6ZS-gp-nYr"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
@@ -412,7 +417,7 @@
         <!--MyBudget-->
         <scene sceneID="57C-mI-m3G">
             <objects>
-                <viewController id="VSJ-7V-tPr" customClass="MyBudgetViewController" customModule="CollegeKitchenFinal" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="myBudgetController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="VSJ-7V-tPr" customClass="MyBudgetViewController" customModule="CollegeKitchenFinal" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="S9U-LS-pXC">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -635,12 +640,20 @@
         <scene sceneID="yA9-up-O9e">
             <objects>
                 <navigationController storyboardIdentifier="fridgeNavigator" automaticallyAdjustsScrollViewInsets="NO" id="iLX-b8-Zsn" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="MyFridge" image="fridgy" selectedImage="fridgy" id="XwE-bj-U0H"/>
+                    <tabBarItem key="tabBarItem" title="MyFridge" image="fridgy" selectedImage="fridgy" id="XwE-bj-U0H">
+                        <color key="badgeColor" red="0.27058823529999998" green="0.52156862749999999" blue="0.47843137250000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    </tabBarItem>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="uOi-wc-QA4">
                         <rect key="frame" x="0.0" y="20" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="barTintColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <textAttributes key="titleTextAttributes">
+                            <color key="textColor" red="0.27058823529999998" green="0.52156862749999999" blue="0.47843137250000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        </textAttributes>
+                        <textAttributes key="largeTitleTextAttributes">
+                            <color key="textColor" red="0.27058823529999998" green="0.52156862749999999" blue="0.47843137250000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        </textAttributes>
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
@@ -655,12 +668,20 @@
         <scene sceneID="vlc-hX-Q2c">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="sme-D5-pjt" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="MyBudget" image="big" selectedImage="big" id="PfX-0R-tS9"/>
+                    <tabBarItem key="tabBarItem" title="MyBudget" image="big" selectedImage="big" id="PfX-0R-tS9">
+                        <color key="badgeColor" red="0.27058823529999998" green="0.52156862749999999" blue="0.47843137250000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    </tabBarItem>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="cLr-WT-fP9">
                         <rect key="frame" x="0.0" y="20" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="barTintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <textAttributes key="titleTextAttributes">
+                            <color key="textColor" red="0.27058823529999998" green="0.52156862749999999" blue="0.47843137250000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        </textAttributes>
+                        <textAttributes key="largeTitleTextAttributes">
+                            <color key="textColor" red="0.27058823529999998" green="0.52156862749999999" blue="0.47843137250000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        </textAttributes>
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
@@ -675,12 +696,20 @@
         <scene sceneID="2K2-Vo-BNt">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="zEe-La-Xz6" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="MyRecipes" image="SaltBae" selectedImage="SaltBae" id="Krv-4U-UOh"/>
+                    <tabBarItem key="tabBarItem" title="MyRecipes" image="SaltBae" selectedImage="SaltBae" id="Krv-4U-UOh">
+                        <color key="badgeColor" red="0.27058823529999998" green="0.52156862749999999" blue="0.47843137250000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    </tabBarItem>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="6SS-P2-ZdX">
                         <rect key="frame" x="0.0" y="20" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="barTintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <textAttributes key="titleTextAttributes">
+                            <color key="textColor" red="0.27058823529999998" green="0.52156862749999999" blue="0.47843137250000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        </textAttributes>
+                        <textAttributes key="largeTitleTextAttributes">
+                            <color key="textColor" red="0.27058823529999998" green="0.52156862749999999" blue="0.47843137250000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        </textAttributes>
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
@@ -695,12 +724,20 @@
         <scene sceneID="7wc-qU-lee">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="5G7-w3-G3f" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="MyProfile" image="solidHat" selectedImage="icons8-chef-hat-60" id="Z2Y-iy-uky"/>
+                    <tabBarItem key="tabBarItem" title="MyProfile" image="solidHat" selectedImage="icons8-chef-hat-60" id="Z2Y-iy-uky">
+                        <color key="badgeColor" red="0.27058823529999998" green="0.52156862749999999" blue="0.47843137250000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    </tabBarItem>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="bpr-Um-xeF">
                         <rect key="frame" x="0.0" y="20" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="barTintColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <textAttributes key="titleTextAttributes">
+                            <color key="textColor" red="0.27058823529999998" green="0.52156862749999999" blue="0.47843137250000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        </textAttributes>
+                        <textAttributes key="largeTitleTextAttributes">
+                            <color key="textColor" red="0.27058823529999998" green="0.52156862749999999" blue="0.47843137250000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        </textAttributes>
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
@@ -721,4 +758,5 @@
         <image name="icons8-kitchen-filled-100" width="50" height="50"/>
         <image name="solidHat" width="25" height="25"/>
     </resources>
+    <color key="tintColor" red="0.27058823529411763" green="0.52156862745098043" blue="0.47843137254901963" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
 </document>

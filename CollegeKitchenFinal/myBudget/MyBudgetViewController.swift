@@ -8,6 +8,8 @@
 
 import UIKit
 
+private let reuseIdentifier = "myBudgetView"
+
 class MyBudgetViewController: UIViewController {
     
     var budgetValue:Double = 0
