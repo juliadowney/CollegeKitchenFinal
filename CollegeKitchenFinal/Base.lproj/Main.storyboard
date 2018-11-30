@@ -18,21 +18,63 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Welcome!" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="F7f-sa-X0b">
-                                <rect key="frame" x="149" y="96" width="76" height="21"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="textColor"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Whats Cooking Good Looking?" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="F7f-sa-X0b">
+                                <rect key="frame" x="13" y="96" width="349.5" height="21"/>
+                                <fontDescription key="fontDescription" name="Didot-Bold" family="Didot" pointSize="24"/>
+                                <color key="textColor" red="0.72941176470588232" green="0.80000000000000004" blue="0.84313725490196079" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="5Dc-N7-jZ6" userLabel="ProfileImage">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icons8-kitchen-filled-100" translatesAutoresizingMaskIntoConstraints="NO" id="5Dc-N7-jZ6" userLabel="ProfileImage">
                                 <rect key="frame" x="112" y="125" width="150" height="150"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="150" id="LWK-Cl-9Hy"/>
                                     <constraint firstAttribute="width" constant="150" id="Ye9-gT-foF"/>
                                 </constraints>
                             </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Items in your fridge:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wpj-17-xOU">
+                                <rect key="frame" x="28" y="311" width="176" height="24"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" name="Didot" family="Didot" pointSize="19"/>
+                                <color key="textColor" red="0.72941176470588232" green="0.80000000000000004" blue="0.84313725490196079" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Your current budget:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="z7R-b9-byE">
+                                <rect key="frame" x="28" y="355" width="180" height="24"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" name="Didot" family="Didot" pointSize="19"/>
+                                <color key="textColor" red="0.72941176470000002" green="0.80000000000000004" blue="0.84313725490000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Number of recipies:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7af-42-TBJ">
+                                <rect key="frame" x="28" y="407" width="170" height="24"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" name="Didot" family="Didot" pointSize="19"/>
+                                <color key="textColor" red="0.72941176470000002" green="0.80000000000000004" blue="0.84313725490000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="0" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jTv-ep-t29">
+                                <rect key="frame" x="236" y="313" width="112" height="22"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" name="Didot" family="Didot" pointSize="17"/>
+                                <color key="textColor" red="0.72941176470000002" green="0.80000000000000004" blue="0.84313725490000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="0" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Peg-Qv-gEv">
+                                <rect key="frame" x="236" y="357" width="112" height="22"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" name="Didot" family="Didot" pointSize="17"/>
+                                <color key="textColor" red="0.72941176470000002" green="0.80000000000000004" blue="0.84313725490000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="0" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bos-dW-HMu">
+                                <rect key="frame" x="236" y="407" width="112" height="22"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" name="Didot" family="Didot" pointSize="17"/>
+                                <color key="textColor" red="0.72941176470000002" green="0.80000000000000004" blue="0.84313725490000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
-                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="backgroundColor" red="0.12549019607843137" green="0.14117647058823529" blue="0.23921568627450981" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="5Dc-N7-jZ6" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="1NZ-5U-56t"/>
                             <constraint firstItem="F7f-sa-X0b" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="32" id="5fY-Ou-LZ4"/>
@@ -560,7 +602,7 @@
         <scene sceneID="yA9-up-O9e">
             <objects>
                 <navigationController storyboardIdentifier="fridgeNavigator" automaticallyAdjustsScrollViewInsets="NO" id="iLX-b8-Zsn" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="MyFridge" id="XwE-bj-U0H"/>
+                    <tabBarItem key="tabBarItem" title="MyFridge" image="fridgy" selectedImage="fridgy" id="XwE-bj-U0H"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="uOi-wc-QA4">
                         <rect key="frame" x="0.0" y="20" width="375" height="44"/>
@@ -579,7 +621,7 @@
         <scene sceneID="vlc-hX-Q2c">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="sme-D5-pjt" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="MyBudget" image="budget" id="PfX-0R-tS9"/>
+                    <tabBarItem key="tabBarItem" title="MyBudget" image="big" selectedImage="big" id="PfX-0R-tS9"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="cLr-WT-fP9">
                         <rect key="frame" x="0.0" y="20" width="375" height="44"/>
@@ -598,7 +640,7 @@
         <scene sceneID="2K2-Vo-BNt">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="zEe-La-Xz6" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="MyRecipes" id="Krv-4U-UOh"/>
+                    <tabBarItem key="tabBarItem" title="MyRecipes" image="SaltBae" selectedImage="SaltBae" id="Krv-4U-UOh"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="6SS-P2-ZdX">
                         <rect key="frame" x="0.0" y="20" width="375" height="44"/>
@@ -617,7 +659,7 @@
         <scene sceneID="7wc-qU-lee">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="5G7-w3-G3f" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="MyProfile" selectedImage="profile" id="Z2Y-iy-uky"/>
+                    <tabBarItem key="tabBarItem" title="MyProfile" image="solidHat" selectedImage="icons8-chef-hat-60" id="Z2Y-iy-uky"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="bpr-Um-xeF">
                         <rect key="frame" x="0.0" y="20" width="375" height="44"/>
@@ -634,7 +676,12 @@
         </scene>
     </scenes>
     <resources>
+        <image name="SaltBae" width="25" height="25"/>
+        <image name="big" width="25" height="25"/>
         <image name="budget" width="12" height="12"/>
-        <image name="profile" width="12" height="12"/>
+        <image name="fridgy" width="25" height="25"/>
+        <image name="icons8-chef-hat-60" width="30" height="30"/>
+        <image name="icons8-kitchen-filled-100" width="50" height="50"/>
+        <image name="solidHat" width="25" height="25"/>
     </resources>
 </document>
