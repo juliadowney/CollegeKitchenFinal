@@ -16,20 +16,28 @@ class RecipeDetailsViewController: UIViewController {
     
     @IBOutlet weak var recipeTitle: UILabel!
     @IBOutlet weak var recipeImage: UIImageView!
+    
+    
+    @IBOutlet weak var recipeInstructions: UILabel!
     @IBOutlet weak var recipeIngredients: UILabel!
     
-    //Save Recipe Button 
-    @IBAction func saveRecipe(_ sender: Any) {
-    }
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
         recipeIngredients.numberOfLines = 0;
-        
+        recipeInstructions.numberOfLines = 0; 
 
         setUpRecipeDetails()
+        
+        self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Save Recipe", style: .done, target: self, action: #selector(saveRecipeAction))
+
         // Do any additional setup after loading the view.
+    }
+    
+    /// SOPHIE EDIT THIS
+    @objc func saveRecipeAction(){
+        print("saved")
     }
     
     override func didReceiveMemoryWarning() {
@@ -43,6 +51,7 @@ class RecipeDetailsViewController: UIViewController {
         let data = NSData(contentsOf: imageURL!)
         recipeImage.image =  UIImage(data: data! as Data)
         setUpIngredients()
+        recipeInstructions.text = currentRecipeDetails.instructions
     }
   
     func setUpIngredients(){
@@ -51,7 +60,7 @@ class RecipeDetailsViewController: UIViewController {
         for ingredient in recipeIngredientsArray{
             
             var ingredientUnit:String = ""
-            let ingredientAmount = String(format:"%2.f", ingredient.amount!) + " "
+            let ingredientAmount = String(format:"%.2f", ingredient.amount!) + " "
             
             if ((ingredient.unit) != nil) {
             ingredientUnit = ingredient.unit! + " "
