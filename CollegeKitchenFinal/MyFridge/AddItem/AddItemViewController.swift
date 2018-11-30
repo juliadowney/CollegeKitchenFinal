@@ -264,10 +264,15 @@ class AddItemViewController: UIViewController, UISearchBarDelegate, UITableViewD
         let path = Bundle.main.path(forResource: "UserStorage", ofType: "plist")
         let dict = NSMutableDictionary(contentsOfFile: path!)!
         let budgetValue = dict.object(forKey: "budgetVal") as! Double
-        
+       
         let alert = UIAlertController(title: "Missing Budget", message: "Please go to the myBudget tab and enter a budget before adding items to your fridge", preferredStyle: .alert)
         
-        alert.addAction(UIAlertAction(title: "Cancel", style: .default, handler: nil))
+        alert.addAction(UIAlertAction(title: "OK", style: .default, handler: { _ in
+            let uivc = self.storyboard!.instantiateViewController(withIdentifier: "myBudgetController")
+            self.navigationController!.pushViewController(uivc, animated: true)
+        }))
+        
+        
         if(budgetValue == 0){
             self.present(alert, animated: true)
         }

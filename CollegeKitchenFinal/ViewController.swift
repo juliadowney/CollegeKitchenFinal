@@ -10,6 +10,11 @@ import UIKit
 
 class ViewController: UIViewController {
     
+    @IBOutlet weak var fridgeNum: UILabel!
+    @IBOutlet weak var budgetCurr: UILabel!
+    @IBOutlet weak var receipieNum: UILabel!
+    
+    
     func getIngredientSearch(query: String){
         let urlString = "https://spoonacular-recipe-food-nutrition-v1.p.mashape.com/food/ingredients/autocomplete?query=" + query
         let request = NSMutableURLRequest(url: NSURL(string: urlString)! as URL)
@@ -180,6 +185,23 @@ class ViewController: UIViewController {
         //getRecipeDetails(id: 479101)
         
         // Do any additional setup after loading the view, typically from a nib.
+        
+        
+        let path = Bundle.main.path(forResource: "UserStorage", ofType: "plist")
+        let dict = NSMutableDictionary(contentsOfFile: path!)!
+        let currentList = dict.object(forKey: "myFridge") as! Array<Data>
+        fridgeNum.text = String(currentList.count)
+        budgetCurr.text = "$" + String(dict.object(forKey: "budgetVal") as! Double)
+        
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        let path = Bundle.main.path(forResource: "UserStorage", ofType: "plist")
+        let dict = NSMutableDictionary(contentsOfFile: path!)!
+        let currentList = dict.object(forKey: "myFridge") as! Array<Data>
+        fridgeNum.text = String(currentList.count)
+        budgetCurr.text = "$"+String(dict.object(forKey: "budgetVal") as! Double)
+        //once recipe works do that one too
     }
 
     override func didReceiveMemoryWarning() {
