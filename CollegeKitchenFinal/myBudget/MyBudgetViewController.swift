@@ -34,7 +34,10 @@ class MyBudgetViewController: UIViewController {
         backgroundView.isHidden = true
         resetBudPopUp.isHidden = true
         editBudPopUp.isHidden = true
-        
+        view.backgroundColor = UIColor(red: 182/255, green: 204/255, blue: 216/255, alpha: 1)
+        budgetValLabel.textColor = UIColor(red: 31/255, green: 35/255, blue: 63/255, alpha: 1)
+        spentValLabel.textColor = UIColor(red: 31/255, green: 35/255, blue: 63/255, alpha: 1)
+        availValLabel.textColor = UIColor(red: 31/255, green: 35/255, blue: 63/255, alpha: 1)
         // Do any additional setup after loading the view.
     }
     
