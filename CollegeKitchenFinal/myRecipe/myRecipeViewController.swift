@@ -12,8 +12,6 @@ private let reuseIdentifier = "myRecipeCell"
 
 class myRecipeViewController: UICollectionViewController {
     
-    let pull = PullCalls()
-    
     var recipeDetails:RecipeDetails?
     var currentRecipeDetails:RecipeDetails?
     var recipeImageCache:[UIImage] = []
@@ -84,7 +82,7 @@ class myRecipeViewController: UICollectionViewController {
         return recipeCell
     }
     
-    //Collection View Delegate Functions
+    //When you click on a recipe cell 
     override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let descriptionVC = RecipeDetailsViewController()
         descriptionVC.currentRecipeDetails = savedRecipesArray[indexPath.row]

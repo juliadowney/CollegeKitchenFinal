@@ -39,24 +39,26 @@ class RecipeDetailsViewController: UIViewController {
     @objc func saveRecipeAction(){
         var recipeInList = false
         
-//        let path = Bundle.main.path(forResource: "UserStorage", ofType: "plist")
-//        let dict = NSMutableDictionary(contentsOfFile: path!)!
-//        let currentList = dict.object(forKey: "myFridge") as! Array<Data>
-//        for eachIngredient in currentList {
-//            let jsonDecoder = JSONDecoder()
-//            let thisIngredient:Ingredient = try! jsonDecoder.decode(Ingredient.self, from: eachIngredient)
-//            myFridgeIngredients.append(thisIngredient)
-//        }
-        
         let path = Bundle.main.path(forResource: "UserStorage", ofType: "plist")
         let dict = NSMutableDictionary(contentsOfFile: path!)!
-        let currentList = dict.object(forKey: "myRecipe") as! Array<Data>
-        for eachRecipe in currentList{
-            let jsonDecoder = JSONDecoder()
-            let thisRecipe:RecipeDetails = try! jsonDecoder.decode(RecipeDetails.self, from: eachRecipe)
-            
-        }
+        let jsonnData = try! JSONEncoder().encode(currentRecipeDetails)
+        var currentList = dict.object(forKey: "myRecipe") as! Array<Data>
         
+        
+        for eachRecipe in currentList{
+            let thisRecipe = try! JSONDecoder().decode(RecipeDetails.self, from: eachRecipe)
+            if(thisRecipe.title == self.currentRecipeDetails.title){
+                recipeInList = true
+            }
+        }
+        if(recipeInList == false){
+            currentList.append(jsonnData)
+        }
+        dict.setValue(currentList, forKey: "myRecipe")
+        _ = dict.write(toFile: path!, atomically:true)
+        
+        let newArray = dict.object(forKey: "myRecipe") as! Array<Data>
+        print(newArray)
         
         print("saved")
     }
