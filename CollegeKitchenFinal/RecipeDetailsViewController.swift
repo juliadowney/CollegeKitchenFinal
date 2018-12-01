@@ -37,6 +37,27 @@ class RecipeDetailsViewController: UIViewController {
     
     /// SOPHIE EDIT THIS
     @objc func saveRecipeAction(){
+        var recipeInList = false
+        
+//        let path = Bundle.main.path(forResource: "UserStorage", ofType: "plist")
+//        let dict = NSMutableDictionary(contentsOfFile: path!)!
+//        let currentList = dict.object(forKey: "myFridge") as! Array<Data>
+//        for eachIngredient in currentList {
+//            let jsonDecoder = JSONDecoder()
+//            let thisIngredient:Ingredient = try! jsonDecoder.decode(Ingredient.self, from: eachIngredient)
+//            myFridgeIngredients.append(thisIngredient)
+//        }
+        
+        let path = Bundle.main.path(forResource: "UserStorage", ofType: "plist")
+        let dict = NSMutableDictionary(contentsOfFile: path!)!
+        let currentList = dict.object(forKey: "myRecipe") as! Array<Data>
+        for eachRecipe in currentList{
+            let jsonDecoder = JSONDecoder()
+            let thisRecipe:RecipeDetails = try! jsonDecoder.decode(RecipeDetails.self, from: eachRecipe)
+            
+        }
+        
+        
         print("saved")
     }
     

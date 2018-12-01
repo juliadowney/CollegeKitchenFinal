@@ -12,7 +12,10 @@ private let reuseIdentifier = "myRecipeCell"
 
 class myRecipeViewController: UICollectionViewController {
     
+    let pull = PullCalls()
+    
     var recipeDetails:RecipeDetails?
+    var currentRecipeDetails:RecipeDetails?
     var recipeImageCache:[UIImage] = []
     
     //Collection View
@@ -28,22 +31,27 @@ class myRecipeViewController: UICollectionViewController {
         myRecipeCollectionView.register(UICollectionViewCell.self, forCellWithReuseIdentifier: "myRecipeCell")
     }
     
-
-    override func viewDidLoad() {
-        super.viewDidLoad()
+    //Putting saved movies into an array
+    func getSavedRecipes(){
+        savedRecipesArray.removeAll()
+        let path = Bundle.main.path(forResource: "myRecipe", ofType: "plist")
+        let dict:AnyObject = NSMutableDictionary(contentsOfFile: path!)!
         
-        setUpCollectionView()
-    }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+        let savedArray = dict.object(forKey: "savedRecipesArray") as! Array<Data>
+        
+        for data in savedArray{
+            let input = try! JSONDecoder().decode(RecipeDetails.self, from: data)
+            savedRecipesArray.append(input)
+            print(input.title)
+        }
     }
     
-    //Get Recipe Images
-    //func getRecipeImage(){
-     //
-    //}
+    
+    //Recipe Images:
+//    recipeTitle.text = currentRecipeDetails.title
+//    let imageURL = URL(string:currentRecipeDetails.image)
+//    let data = NSData(contentsOf: imageURL!)
+//    recipeImage.image =  UIImage(data: data! as Data)
 
 
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -56,7 +64,7 @@ class myRecipeViewController: UICollectionViewController {
         let recipeCell = collectionView.dequeueReusableCell(withReuseIdentifier: "myRecipeCell", for: indexPath)
         
         //Add Image to Cell
-        let url = URL(string: recipeDetails!.image)
+        let url = URL(string: currentRecipeDetails!.image)
         let data = try? Data(contentsOf: url!)
         let recipeImage = UIImage(data: data!)
         let imageView = UIImageView(image: recipeImage)
@@ -70,7 +78,7 @@ class myRecipeViewController: UICollectionViewController {
         text.textColor = UIColor.white
         text.numberOfLines = 0
         text.backgroundColor = UIColor.init(red: 0, green: 0, blue: 0, alpha: 0.7)
-        text.text = recipeDetails!.title
+        text.text = currentRecipeDetails!.title
         recipeCell.contentView.addSubview(text)
     
         return recipeCell
@@ -78,38 +86,25 @@ class myRecipeViewController: UICollectionViewController {
     
     //Collection View Delegate Functions
     override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-       
+        let descriptionVC = RecipeDetailsViewController()
+        descriptionVC.currentRecipeDetails = savedRecipesArray[indexPath.row]
+        navigationController?.pushViewController(descriptionVC, animated: true)
     }
 
-    // MARK: UICollectionViewDelegate
-
-    /*
-    // Uncomment this method to specify if the specified item should be highlighted during tracking
-    override func collectionView(_ collectionView: UICollectionView, shouldHighlightItemAt indexPath: IndexPath) -> Bool {
-        return true
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        setUpCollectionView()
+        getSavedRecipes()
+        myRecipeCollectionView.reloadData()
+        
     }
-    */
-
-    /*
-    // Uncomment this method to specify if the specified item should be selected
-    override func collectionView(_ collectionView: UICollectionView, shouldSelectItemAt indexPath: IndexPath) -> Bool {
-        return true
-    }
-    */
-
-    /*
-    // Uncomment these methods to specify if an action menu should be displayed for the specified item, and react to actions performed on the item
-    override func collectionView(_ collectionView: UICollectionView, shouldShowMenuForItemAt indexPath: IndexPath) -> Bool {
-        return false
-    }
-
-    override func collectionView(_ collectionView: UICollectionView, canPerformAction action: Selector, forItemAt indexPath: IndexPath, withSender sender: Any?) -> Bool {
-        return false
-    }
-
-    override func collectionView(_ collectionView: UICollectionView, performAction action: Selector, forItemAt indexPath: IndexPath, withSender sender: Any?) {
     
+    override func didReceiveMemoryWarning() {
+        super.didReceiveMemoryWarning()
+        // Dispose of any resources that can be recreated.
     }
-    */
+
+
 
 }
