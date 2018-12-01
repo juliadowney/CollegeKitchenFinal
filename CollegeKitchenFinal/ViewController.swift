@@ -13,7 +13,9 @@ class ViewController: UIViewController {
     @IBOutlet weak var fridgeNum: UILabel!
     @IBOutlet weak var budgetCurr: UILabel!
     @IBOutlet weak var receipieNum: UILabel!
-    
+    @IBOutlet weak var joke: UILabel!
+    let activityIndicator = UIActivityIndicatorView(activityIndicatorStyle: .whiteLarge)
+    let pull=PullCalls()
     
     func getIngredientSearch(query: String){
         let urlString = "https://spoonacular-recipe-food-nutrition-v1.p.mashape.com/food/ingredients/autocomplete?query=" + query
@@ -186,12 +188,19 @@ class ViewController: UIViewController {
         
         // Do any additional setup after loading the view, typically from a nib.
         
+//        activityIndicator.backgroundColor = UIColor(red:0.83, green:0.83, blue:0.83, alpha:1.0)
+        activityIndicator.frame = joke.frame
+        view.addSubview(activityIndicator)
+        activityIndicator.hidesWhenStopped = true
+        activityIndicator.color = UIColor.black
+        joke.numberOfLines = 0
         
         let path = Bundle.main.path(forResource: "UserStorage", ofType: "plist")
         let dict = NSMutableDictionary(contentsOfFile: path!)!
         let currentList = dict.object(forKey: "myFridge") as! Array<Data>
         fridgeNum.text = String(currentList.count)
         budgetCurr.text = "$" + String(dict.object(forKey: "budgetVal") as! Double)
+        
         
     }
     
@@ -202,6 +211,20 @@ class ViewController: UIViewController {
         fridgeNum.text = String(currentList.count)
         budgetCurr.text = "$"+String(dict.object(forKey: "budgetVal") as! Double)
         //once recipe works do that one too
+        activityIndicator.startAnimating()
+        joke.isHidden = true
+        DispatchQueue.global(qos: .userInitiated).async {
+            self.pull.getFoodJoke(){ returnJoke in
+
+
+                DispatchQueue.main.async {
+                    self.joke.text = returnJoke.text
+                    self.activityIndicator.stopAnimating()
+                    self.joke.isHidden = false
+
+                }
+            }
+        }
     }
 
     override func didReceiveMemoryWarning() {

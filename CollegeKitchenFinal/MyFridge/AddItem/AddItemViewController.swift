@@ -16,6 +16,7 @@ class AddItemViewController: UIViewController, UISearchBarDelegate, UITableViewD
     @IBOutlet weak var typeToSearchLabel: UILabel!
     var searchIngredients:[IngredientSearch] = [] // the array where the current searchedIngredients are stored
     let activityIndicator = UIActivityIndicatorView(activityIndicatorStyle: .whiteLarge)
+    let waitingJoke = UILabel()
 
     
     // ITEMS FOR POPUP WINDOW WHEN YOU CLICK AN ITEM TO ADD TO FRIDGE
@@ -80,6 +81,12 @@ class AddItemViewController: UIViewController, UISearchBarDelegate, UITableViewD
     
     @IBAction func doneAddingItem(_ sender: Any) {
         activityIndicator.startAnimating()
+        self.backgroundWindow.isHidden = true
+        self.setView(view: self.popUpWindow, hidden: true)
+
+//        let jokeView:LoadingScreenView = LoadingScreenView(inputFrame: theTableView.frame)
+//        theTableView.addSubview(jokeView)
+        
         let quantity = Double(self.quantityText.text!)
 
 
@@ -132,13 +139,12 @@ class AddItemViewController: UIViewController, UISearchBarDelegate, UITableViewD
                         }
                         
                     
-                        self.backgroundWindow.isHidden = true
-                        self.setView(view: self.popUpWindow, hidden: true)
-
+                    
                         DispatchQueue.global(qos: .userInitiated).async {
 
                         DispatchQueue.main.async {
                             self.activityIndicator.stopAnimating()
+                            //jokeView.removeFromSuperview()
                         self.navigationController?.popToRootViewController(animated: true)
                         }
                     }
@@ -153,6 +159,20 @@ class AddItemViewController: UIViewController, UISearchBarDelegate, UITableViewD
     // SEARCH BAR
     func searchBarSearchButtonClicked(_ sender: UISearchBar) {
         activityIndicator.startAnimating()
+//        waitingJoke.numberOfLines = 0
+//        waitingJoke.frame = CGRect(x: view.frame.width/8, y: view.frame.height/2, width: view.frame.width/2, height: view.frame.height/4)
+//        DispatchQueue.global(qos: .userInitiated).async {
+//            self.pull.getFoodJoke(){ returnJoke in
+//
+//
+//                DispatchQueue.main.async {
+//                    self.waitingJoke.text = returnJoke.text
+//                    self.view.addSubview(self.waitingJoke)
+//                    self.waitingJoke.isHidden = false
+//                }
+//            }
+//        }
+        
         view.endEditing(true) // closes the keyboard
         let searchString = self.searchBar.text! // text from search bar
         print("above dispatch")
@@ -168,6 +188,7 @@ class AddItemViewController: UIViewController, UISearchBarDelegate, UITableViewD
                     self.activityIndicator.stopAnimating()
                     print("in main")
                     self.theTableView.reloadData()
+                    
                 }
         }
         }
