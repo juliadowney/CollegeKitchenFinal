@@ -26,15 +26,44 @@ class MyFridgeViewController: UIViewController, UITableViewDataSource, UITableVi
             myCell.displayCell(name: ingredient.name!, amount: ingredient.amount!, unit: ingredient.unit!)
             return myCell
         }
-        
-        
-        
-        
+    
+    /*
+        // Override to support editing the table view.
+        override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
+            if editingStyle == .delete {
+                theFavs.remove(at: indexPath.row)
+                tableView.deleteRows(at: [indexPath], with: .fade)
+                remove()
+                getData()
+            } else if editingStyle == .insert {
+                // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
+            }
+        }
+        */
+    
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
+        if editingStyle == .delete {
+            myFridgeIngredients.remove(at: indexPath.row)
+            tableView.deleteRows(at: [indexPath], with: .fade)
+            let path = Bundle.main.path(forResource: "UserStorage", ofType: "plist")
+            let dict = NSMutableDictionary(contentsOfFile: path!)!
+            var currentList = dict.object(forKey: "myFridge") as! Array<Data>
+            currentList.remove(at: indexPath.row)
+            dict.setValue(currentList, forKey: "myFridge")
+            dict.write(toFile: path!, atomically: true)
+            updateIngredients()
+        } else if editingStyle == .insert {
+            // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
+        }
+    }
+    
         func updateIngredients(){
            myFridgeIngredients = []
             let path = Bundle.main.path(forResource: "UserStorage", ofType: "plist")
             let dict = NSMutableDictionary(contentsOfFile: path!)!
             let currentList = dict.object(forKey: "myFridge") as! Array<Data>
+            print("in update ingredients -- ")
+            print("current list = \(currentList.description)")
             for eachIngredient in currentList {
                 let jsonDecoder = JSONDecoder()
                 let thisIngredient:Ingredient = try! jsonDecoder.decode(Ingredient.self, from: eachIngredient)
@@ -55,8 +84,15 @@ class MyFridgeViewController: UIViewController, UITableViewDataSource, UITableVi
 
             // Do any additional setup after loading the view.
         }
+    
+    
     override func viewDidAppear(_ animated: Bool) {
          updateIngredients()
+        myFridgeTableView.reloadData()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        updateIngredients()
         myFridgeTableView.reloadData()
     }
         
