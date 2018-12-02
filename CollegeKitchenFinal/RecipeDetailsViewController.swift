@@ -17,6 +17,11 @@ class RecipeDetailsViewController: UIViewController {
     @IBOutlet weak var recipeTitle: UILabel!
     @IBOutlet weak var recipeImage: UIImageView!
     
+    @IBOutlet weak var servingsLabel: UILabel!
+    @IBOutlet weak var vegetarianLabel: UILabel!
+    @IBOutlet weak var cookTimeLabel: UILabel!
+    @IBOutlet weak var prepTimeLabel: UILabel!
+    @IBOutlet weak var readyInLabel: UILabel!
     
     @IBOutlet weak var recipeInstructions: UILabel!
     @IBOutlet weak var recipeIngredients: UILabel!
@@ -31,6 +36,8 @@ class RecipeDetailsViewController: UIViewController {
         setUpRecipeDetails()
         
         self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Save Recipe", style: .done, target: self, action: #selector(saveRecipeAction))
+        navigationItem.rightBarButtonItem?.tintColor = UIColor.white
+
 
         // Do any additional setup after loading the view.
     }
@@ -52,6 +59,17 @@ class RecipeDetailsViewController: UIViewController {
         recipeImage.image =  UIImage(data: data! as Data)
         setUpIngredients()
         recipeInstructions.text = currentRecipeDetails.instructions
+        servingsLabel.text = String(currentRecipeDetails.servings)
+        if (currentRecipeDetails.vegetarian){
+            vegetarianLabel.text = "Yes"
+        }
+        else {
+            vegetarianLabel.text = "No"
+        }
+        cookTimeLabel.text = String(currentRecipeDetails.cookingMinutes) + " minutes"
+        prepTimeLabel.text = String(currentRecipeDetails.preparationMinutes) + " minutes"
+        readyInLabel.text = String(currentRecipeDetails.readyInMinutes) + " minutes"
+        
     }
   
     func setUpIngredients(){
