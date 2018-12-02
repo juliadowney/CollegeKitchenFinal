@@ -113,6 +113,7 @@ class GetRecipeViewController: UIViewController, UITableViewDataSource, UITableV
                     print("^^^^^^^^^^^^^^^^^^^^")
                     let vc = RecipeDetailsViewController()
                     vc.currentRecipeDetails = self.thisRecipeDetails
+                    vc.saved = false
                     self.activityIndicator.stopAnimating()
                     self.navigationController?.pushViewController(vc, animated: true)
                     
