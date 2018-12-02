@@ -18,10 +18,8 @@ class RecipeDetailsViewController: UIViewController {
     @IBOutlet weak var recipeTitle: UILabel!
     @IBOutlet weak var recipeImage: UIImageView!
     
-    
     @IBOutlet weak var recipeInstructions: UILabel!
     @IBOutlet weak var recipeIngredients: UILabel!
-    
     
     
     override func viewDidLoad() {
@@ -36,15 +34,26 @@ class RecipeDetailsViewController: UIViewController {
             navigationItem.rightBarButtonItem?.tintColor = UIColor.white
         }
         setUpRecipeDetails()
-        
-       
-
-        // Do any additional setup after loading the view.
     }
     
     /// Saving recipe to plist
     @objc func saveRecipeAction(){
         if(saved)!{
+
+            let path = Bundle.main.path(forResource: "UserStorage", ofType: "plist")
+            let dict = NSMutableDictionary(contentsOfFile: path!)!
+            var currentList = dict.object(forKey: "myRecipe") as! Array<Data>
+            
+            for(index,data) in currentList.enumerated(){
+                let input = try! JSONDecoder().decode(RecipeDetails.self, from: data)
+                if(input.title == currentRecipeDetails.title){
+                    currentList.remove(at:index)
+                }
+            }
+            
+            dict.setValue(currentList, forKey: "myRecipe")
+            _ = dict.write(toFile: path!, atomically:true)
+            
             
         }else{
             var recipeInList = false
@@ -104,14 +113,4 @@ class RecipeDetailsViewController: UIViewController {
             recipeIngredients.text = recipeIngredients.text! + ingredientAmount + ingredientUnit + ingredientName
         }
     }
-    /*
-     // MARK: - Navigation
-     
-     // In a storyboard-based application, you will often want to do a little preparation before navigation
-     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-     // Get the new view controller using segue.destinationViewController.
-     // Pass the selected object to the new view controller.
-     }
-     */
-    
 }
