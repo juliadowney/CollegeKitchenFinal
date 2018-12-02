@@ -32,7 +32,18 @@ class GetRecipeViewController: UIViewController, UITableViewDataSource, UITableV
 
         getRecipe()
         theTableView.rowHeight = 70
+        print (getRecipeArray.count)
+        
+            let alert = UIAlertController(title: "Empty Fridge", message: "Please add items to your fridge in order to generate recipes.", preferredStyle: .alert)
+            
+            alert.addAction(UIAlertAction(title: "OK", style: .default, handler: { _ in
+               self.navigationController?.popViewController(animated: true)
 
+        }))
+    if (getRecipeArray.count == 0){
+            self.present(alert, animated: true)
+
+    }
     }
     
     func getRecipe(){

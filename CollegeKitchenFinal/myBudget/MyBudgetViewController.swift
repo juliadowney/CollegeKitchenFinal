@@ -66,6 +66,8 @@ class MyBudgetViewController: UIViewController {
         if (editBudEntry.text == ""){
             backgroundView.isHidden = true
             editBudPopUp.isHidden = true
+            view.endEditing(true)
+
         }
         else {
             if (addSubSelector.selectedSegmentIndex == 0){
@@ -80,6 +82,8 @@ class MyBudgetViewController: UIViewController {
                 displayBudget()
                 backgroundView.isHidden = true
                 editBudPopUp.isHidden = true
+                view.endEditing(true)
+
             }
             else {
                 if (budgetValue - (NumberFormatter().number(from: editBudEntry.text!)?.doubleValue)! > 0){
@@ -94,6 +98,8 @@ class MyBudgetViewController: UIViewController {
                 displayBudget()
                 backgroundView.isHidden = true
                editBudPopUp.isHidden = true
+                    view.endEditing(true)
+
                 }
                 
             }
@@ -136,6 +142,7 @@ class MyBudgetViewController: UIViewController {
             displayBudget()
             backgroundView.isHidden = true
             resetBudPopUp.isHidden = true
+            view.endEditing(true)
         }
         
     }
