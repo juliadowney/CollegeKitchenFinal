@@ -15,13 +15,13 @@ class myRecipeViewController: UICollectionViewController {
     var recipeDetails:RecipeDetails?
     var currentRecipeDetails:RecipeDetails?
     var recipeImageCache:[UIImage] = []
+    var savedRecipesArray: [RecipeDetails] = []  //Array of Recipe Details - Ones that will be saved
+    
     
     //Collection View
     @IBOutlet var myRecipeCollectionView: UICollectionView!
     
-    //Array of Recipe Details - Ones that will be saved
-    var savedRecipesArray: [RecipeDetails] = []
-    
+   
     //Set up collection view
     func setUpCollectionView(){
         myRecipeCollectionView.dataSource = self
@@ -32,10 +32,10 @@ class myRecipeViewController: UICollectionViewController {
     //Putting saved movies into an array
     func getSavedRecipes(){
         savedRecipesArray.removeAll()
-        let path = Bundle.main.path(forResource: "myRecipe", ofType: "plist")
+        let path = Bundle.main.path(forResource: "UserStorage", ofType: "plist")
         let dict:AnyObject = NSMutableDictionary(contentsOfFile: path!)!
         
-        let savedArray = dict.object(forKey: "savedRecipesArray") as! Array<Data>
+        let savedArray = dict.object(forKey: "myRecipe") as! Array<Data>
         
         for data in savedArray{
             let input = try! JSONDecoder().decode(RecipeDetails.self, from: data)

@@ -31,11 +31,12 @@ class RecipeDetailsViewController: UIViewController {
         setUpRecipeDetails()
         
         self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Save Recipe", style: .done, target: self, action: #selector(saveRecipeAction))
+        navigationItem.rightBarButtonItem?.tintColor = UIColor.white
 
         // Do any additional setup after loading the view.
     }
     
-    /// SOPHIE EDIT THIS
+    /// Saving recipe to plist
     @objc func saveRecipeAction(){
         var recipeInList = false
         
@@ -43,7 +44,6 @@ class RecipeDetailsViewController: UIViewController {
         let dict = NSMutableDictionary(contentsOfFile: path!)!
         let jsonnData = try! JSONEncoder().encode(currentRecipeDetails)
         var currentList = dict.object(forKey: "myRecipe") as! Array<Data>
-        
         
         for eachRecipe in currentList{
             let thisRecipe = try! JSONDecoder().decode(RecipeDetails.self, from: eachRecipe)

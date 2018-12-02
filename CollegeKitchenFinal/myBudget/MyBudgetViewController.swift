@@ -95,14 +95,8 @@ class MyBudgetViewController: UIViewController {
                 backgroundView.isHidden = true
                editBudPopUp.isHidden = true
                 }
-                
             }
-           
-      
-            
         }
-        
-       
     }
     
     
