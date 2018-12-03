@@ -582,7 +582,7 @@
         <!--MyRecipes-->
         <scene sceneID="57A-HZ-77Y">
             <objects>
-                <viewController id="2su-bf-1Sj" customClass="myRecipeViewController" customModule="CollegeKitchenFinal" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="2su-bf-1Sj" customClass="myRecipeVC" customModule="CollegeKitchenFinal" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="ExU-xe-g4v">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="554"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -614,7 +614,7 @@
                     </view>
                     <navigationItem key="navigationItem" title="MyRecipes" id="FJR-Up-0wg"/>
                     <connections>
-                        <outlet property="myRecipeCollectionView" destination="uQn-Jq-aiM" id="gcN-eq-gXZ"/>
+                        <outlet property="myRecipeCollectionView" destination="uQn-Jq-aiM" id="xBb-nj-gE5"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="D3d-mY-tQf" userLabel="First Responder" sceneMemberID="firstResponder"/>
