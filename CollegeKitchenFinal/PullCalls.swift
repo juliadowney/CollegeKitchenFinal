@@ -203,7 +203,7 @@ class PullCalls {
         tache.resume()
     }
     
-    typealias getRecipesDetailsResult = (RecipeDetails) -> ()
+    typealias getRecipesDetailsResult = (RecipeDetails?) -> ()
 
     func getRecipeDetails(id: Int, completion: @escaping getRecipesDetailsResult){
         
@@ -219,12 +219,7 @@ class PullCalls {
             if let jsonData = data {
                 print(jsonData)
                 let json = JSONDecoder()
-                guard let search = try? json.decode(RecipeDetails.self, from: jsonData) else {
-                    print("nil search value")
-                    return
-                }
-                print(search)
-                thisRecipeDetails = search
+                thisRecipeDetails = try? json.decode(RecipeDetails.self, from: jsonData)
                 DispatchQueue.main.async {
                     completion(thisRecipeDetails)
                 }

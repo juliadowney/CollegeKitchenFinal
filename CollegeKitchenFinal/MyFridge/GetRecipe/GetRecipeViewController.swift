@@ -34,21 +34,24 @@ class GetRecipeViewController: UIViewController, UITableViewDataSource, UITableV
         theTableView.rowHeight = 70
         print (getRecipeArray.count)
         
-            let alert = UIAlertController(title: "Empty Fridge", message: "Please add items to your fridge in order to generate recipes.", preferredStyle: .alert)
-            
-            alert.addAction(UIAlertAction(title: "OK", style: .default, handler: { _ in
-               self.navigationController?.popViewController(animated: true)
-
-        }))
-    if (getRecipeArray.count == 0){
-            self.present(alert, animated: true)
-
-    }
     }
     
     func getRecipe(){
         
         getFridgeIngredients()
+        
+        let alert = UIAlertController(title: "Empty Fridge", message: "Please add items to your fridge in order to generate recipes.", preferredStyle: .alert)
+        
+        alert.addAction(UIAlertAction(title: "OK", style: .default, handler: { _ in
+            self.navigationController?.popViewController(animated: true)
+            
+        }))
+       if (fridgeIngredients.count == 0){
+         self.present(alert, animated: true)
+         
+         }
+         
+        
         
         activityIndicator.startAnimating()
         
@@ -111,23 +114,34 @@ class GetRecipeViewController: UIViewController, UITableViewDataSource, UITableV
 
             DispatchQueue.global(qos: .userInitiated).async {
                 print("in dispatch")
-                self.pull.getRecipeDetails(id: self.getRecipeArray[indexPath.row].id){pullRecipeDetails in
-                    self.thisRecipeDetails = pullRecipeDetails
-                    print("got pull")
+                self.pull.getRecipeDetails(id: self.getRecipeArray[indexPath.row].id){ pullRecipeDetails in
+                    print("*************************************")
+                    print(pullRecipeDetails)
+                    if(pullRecipeDetails != nil){
+                        self.thisRecipeDetails = pullRecipeDetails
+                        print("got pull")
+                        DispatchQueue.main.async {
+                            
+                            self.theTableView.reloadData()
+                            
+                            print ("in main")
+                            print (self.thisRecipeDetails)
+                            print("^^^^^^^^^^^^^^^^^^^^")
+                            let vc = RecipeDetailsViewController()
+                            vc.currentRecipeDetails = self.thisRecipeDetails
+                            vc.saved = false
+                            self.activityIndicator.stopAnimating()
+                            self.navigationController?.pushViewController(vc, animated: true)
+                            
+                        }
+                    }else{
+                        let webVC = WebViewController()
+                        webVC.recipe = self.getRecipeArray[indexPath.row]
+                        self.navigationController?.pushViewController(webVC, animated: true)
+                    }
+                    
                 
-                DispatchQueue.main.async {
-                    
-                    self.theTableView.reloadData()
-
-                    print ("in main")
-                    print (self.thisRecipeDetails)
-                    print("^^^^^^^^^^^^^^^^^^^^")
-                    let vc = RecipeDetailsViewController()
-                    vc.currentRecipeDetails = self.thisRecipeDetails
-                    self.activityIndicator.stopAnimating()
-                    self.navigationController?.pushViewController(vc, animated: true)
-                    
-                }
+               
                 }
             }
         
