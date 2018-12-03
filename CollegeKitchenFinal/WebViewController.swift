@@ -18,7 +18,6 @@ class WebViewController: UIViewController, WKNavigationDelegate {
         super.viewDidLoad()
         let goodTitle = recipe.title.replacingOccurrences(of: " ", with: "+")
         let urlString = "https://www.google.co.uk/search?query=\(goodTitle)"
-        print(urlString)
         if let url = URL(string: urlString){
             let myURLRequest = URLRequest(url: url)
             webView = WKWebView(frame: view.frame)
@@ -28,7 +27,6 @@ class WebViewController: UIViewController, WKNavigationDelegate {
         }else{
             navigationController?.popViewController(animated: true)
         }
-        // Do any additional setup after loading the view.
     }
 
     @objc func backtoGetRecipes(){
@@ -38,18 +36,6 @@ class WebViewController: UIViewController, WKNavigationDelegate {
     }
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
     }
-    
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
 
 }

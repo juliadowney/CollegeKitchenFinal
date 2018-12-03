@@ -56,8 +56,6 @@ class AddItemViewController: UIViewController, UISearchBarDelegate, UITableViewD
         
         quantityText.isEnabled = false
         unitPicker.isHidden = false // unhides picker
-       // self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Done", style: .done, target: self, action: #selector(closePicker)) // adds a Done button to the nav bar so we know when user is done selecting
-     
     }
     
     /*
@@ -101,14 +99,10 @@ class AddItemViewController: UIViewController, UISearchBarDelegate, UITableViewD
         }
     }
     
-    
     @IBAction func doneAddingItem(_ sender: Any) {
         activityIndicator.startAnimating()
         self.backgroundWindow.isHidden = true
         self.setView(view: self.popUpWindow, hidden: true)
-
-//        let jokeView:LoadingScreenView = LoadingScreenView(inputFrame: theTableView.frame)
-//        theTableView.addSubview(jokeView)
         
         let quantity = Double(self.quantityText.text!)
 
@@ -117,19 +111,16 @@ class AddItemViewController: UIViewController, UISearchBarDelegate, UITableViewD
         
             self.pull.convertAmounts(ingredientName: self.currentIngredient.name, sourceAmount: quantity!, sourceUnit: self.unitText.text!, targetUnit: "servings") {convertedAmount in
                 convertedServings = convertedAmount
-                print (self.currentIngredient.name)
-                print ((convertedServings.targetAmount))
+        
                 self.pull.parseIngredient(ingredientName: self.currentIngredient.name, servings: Int(convertedServings.targetAmount)){newObject in
                     let newIngredient:Ingredient = Ingredient(id: newObject.id!, name: newObject.name!, amount: quantity, unit: self.unitText.text!)
                     
-                        print (newIngredient)
                     //// PLIST - newIngredient needs to be stored in myFridge plist
                         let path = Bundle.main.path(forResource: "UserStorage", ofType: "plist")
                         let dict = NSMutableDictionary(contentsOfFile: path!)!
                         var currentList = dict.object(forKey: "myFridge") as! Array<Data>
                         let data = try! JSONEncoder().encode(newIngredient)
                     
-                    print("new Ingredient == \(newIngredient)")
                     self.pull.getEstimatedCost(id: newIngredient.id!, amount: newIngredient.amount!, unit: newIngredient.unit!){estimatedCostResult in
                             let estimatedCost:EstimatedCost = estimatedCostResult
                         //// PLIST - estimatedCost needs to be subtracted from budget plist (keep mind of US Cents vs US Dollars)
@@ -145,10 +136,7 @@ class AddItemViewController: UIViewController, UISearchBarDelegate, UITableViewD
                         let alert = UIAlertController(title: "Budget Exceeded", message: "The estimated cost for the item you wish to add is $\(costInDollars!) and your available funds are $\(availValue)", preferredStyle: .alert)
                         
                         alert.addAction(UIAlertAction(title: "Cancel", style: .default, handler: nil))
-                        print("cost in dollars == \(costInDollars!)")
-                        print("new available amount == \(newAvail)")
-                        print("cost in cents == \(costValueInCents)")
-                        print("estimated cost object == \(estimatedCostResult)")
+                        
                         if(newAvail < 0){
                             self.present(alert, animated: true)
                         }else{
@@ -160,60 +148,39 @@ class AddItemViewController: UIViewController, UISearchBarDelegate, UITableViewD
                             dict.setValue(currentList, forKey: "myFridge")
                             dict.write(toFile: path!, atomically: true)
                         }
-                        
-                    
-                    
+
                         DispatchQueue.global(qos: .userInitiated).async {
 
                         DispatchQueue.main.async {
                             self.activityIndicator.stopAnimating()
-                            //jokeView.removeFromSuperview()
                         self.navigationController?.popToRootViewController(animated: true)
                         }
                     }
-            }
+                }
             }
         }
-        
-        
     }
-    
     
     // SEARCH BAR
     func searchBarSearchButtonClicked(_ sender: UISearchBar) {
         activityIndicator.startAnimating()
-//        waitingJoke.numberOfLines = 0
-//        waitingJoke.frame = CGRect(x: view.frame.width/8, y: view.frame.height/2, width: view.frame.width/2, height: view.frame.height/4)
-//        DispatchQueue.global(qos: .userInitiated).async {
-//            self.pull.getFoodJoke(){ returnJoke in
-//
-//
-//                DispatchQueue.main.async {
-//                    self.waitingJoke.text = returnJoke.text
-//                    self.view.addSubview(self.waitingJoke)
-//                    self.waitingJoke.isHidden = false
-//                }
-//            }
-//        }
+
         
         view.endEditing(true) // closes the keyboard
         let searchString = self.searchBar.text! // text from search bar
-        print("above dispatch")
         DispatchQueue.global(qos: .userInitiated).async {
             
             self.searchIngredients.removeAll() // clears the current search ingredient array
-            print("in dispatch")
+
             // pull ingredients from API (pull is an 'object' of PullCalls as declared in beginning of this file)
             self.pull.ingredientSearch(query: searchString) {searchedIngredients in
-                print("got pull")
+          
             self.searchIngredients = searchedIngredients
                 DispatchQueue.main.async {
                     self.activityIndicator.stopAnimating()
-                    print("in main")
                     self.theTableView.reloadData()
-                    
                 }
-        }
+            }
         }
     }
    
@@ -229,9 +196,7 @@ class AddItemViewController: UIViewController, UISearchBarDelegate, UITableViewD
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let myCell = tableView.dequeueReusableCell(withIdentifier: "myCell") as! AddItemTableViewCell
-        print (searchIngredients[indexPath.row].name)
-        print(searchIngredients[indexPath.row].image)
+       let myCell = tableView.dequeueReusableCell(withIdentifier: "myCell") as! AddItemTableViewCell
         
        myCell.displayCell(searchName: searchIngredients[indexPath.row].name, searchImage:searchIngredients[indexPath.row].image )
         
@@ -314,10 +279,7 @@ class AddItemViewController: UIViewController, UISearchBarDelegate, UITableViewD
         let alert = UIAlertController(title: "Missing Budget", message: "Please go to the myBudget tab and enter a budget before adding items to your fridge.", preferredStyle: .alert)
         
         alert.addAction(UIAlertAction(title: "OK", style: .default, handler: { _ in
-            //let uivc = self.storyboard!.instantiateViewController(withIdentifier: "myBudgetController")
             self.tabBarController?.selectedIndex = 2
-           //let uivc = MyBudgetViewController()
-           // self.navigationController!.pushViewController(uivc, animated: true)
         }))
         
         
@@ -328,7 +290,5 @@ class AddItemViewController: UIViewController, UISearchBarDelegate, UITableViewD
     }
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
     }
-
 }

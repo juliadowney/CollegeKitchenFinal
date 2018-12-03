@@ -26,38 +26,20 @@ class PullCalls {
         request.addValue("application/json",forHTTPHeaderField: "Accept")
         let session = URLSession(configuration: .default)
         request.httpMethod = "GET"
-        print(2)
         let tache = session.dataTask(with: request as URLRequest) { (data, response, error) -> Void in
             if let jsonData = data {
-                print(3)
                 let json = JSONDecoder()
                 let search = try! json.decode([IngredientSearch].self, from: jsonData)
-                //print(search)
-                print (4)
                 for ingredient in search{
-                    print(5)
-                    print(ingredient)
-                    //  let addIngredient:IngredientSearch = IngredientSearch(name: "cucumber", image: "budget")
-                    // print (addIngredient)
                     searchIngredients.append(ingredient)
-                    //print("added?")
-                    //print(self.searchIngredients)
                 }
-                
-                    DispatchQueue.main.async {
-                        completion(searchIngredients)
-                    }
-                    
-                
-                
+                DispatchQueue.main.async {
+                    completion(searchIngredients)
+                }
             }
-            print(6)
         }
         session.finishTasksAndInvalidate()
-        print(2)
         tache.resume()
-        print(2)
-        
     }
   
     typealias convertedAmountResult = (ConvertedAmount) -> ()
@@ -66,13 +48,11 @@ class PullCalls {
         var convertedAmount:ConvertedAmount!
         let mainUrl = "https://spoonacular-recipe-food-nutrition-v1.p.mashape.com/recipes/convert?"
         let editedIngredientName = (ingredientName).replacingOccurrences(of: " ", with: "+", options: .literal, range: nil)
-
         let ingredientNameUrl = "ingredientName=" + editedIngredientName
         let sourceAmountUrl = "&sourceAmount=" + String(sourceAmount)
         let sourceUnitUrl = "&sourceUnit=" + sourceUnit
         let targetUnitUrl = "&targetUnit=" + targetUnit
         let urlString = mainUrl + ingredientNameUrl + sourceAmountUrl + sourceUnitUrl + targetUnitUrl
-        print (urlString)
         let request = NSMutableURLRequest(url: NSURL(string: urlString)! as URL)
         request.addValue("kX0oe5UPsGmsh4IvUqlXBP1Gr6USp1Oub8SjsnmwjLrnCRGq8x",forHTTPHeaderField: "X-Mashape-Key")
         request.addValue("application/json",forHTTPHeaderField: "Accept")
@@ -98,11 +78,10 @@ class PullCalls {
                 continue
             }
             guard let scapedKey = key.addingPercentEncoding(withAllowedCharacters: .urlHostAllowed) else {
-                print("Failed to convert key \(key)")
                 continue
             }
             guard let scapedValue = value.addingPercentEncoding(withAllowedCharacters: .urlHostAllowed) else {
-                print("Failed to convert value \(value)")
+
                 continue
             }
             paramList.append("\(scapedKey)=\(scapedValue)")
@@ -126,24 +105,17 @@ class PullCalls {
         request.httpBody = convertToParameters(params).data(using: .utf8)
         let tache = session.dataTask(with: request as URLRequest) { (data, response, error) -> Void in
             if let res = response as? HTTPURLResponse{
-                print("*******************HERE*******************")
-                print(res.statusCode)
                 if (res.statusCode == 200){
                     if let jsonData = data {
                         let json = JSONDecoder()
                         var search = try? json.decode([Ingredient].self, from: jsonData)
-                        print(search!)
                         newIngredient = search?.popLast()
                         DispatchQueue.main.async {
                             completion(newIngredient)
                         }
                     }
                 }
-                else{
-                    print("error")
-                }
             }
-            
         }
         tache.resume()
     }
@@ -173,12 +145,12 @@ class PullCalls {
         }
         tache.resume()
     }
+    
     typealias getRecipesResult = ([Recipe]) -> ()
     func getRecipesByIngredients(fillIngredients: Bool, ingredients: [String], limitLicense: Bool, number: Int, ranking: Int, completion: @escaping getRecipesResult){
         var recipeResults:[Recipe] = []
         let separatedIngredientsForUrl = ingredients.joined(separator: "%2C")
         let urlString = "https://spoonacular-recipe-food-nutrition-v1.p.mashape.com/recipes/findByIngredients?fillIngredients=" + fillIngredients.description + "&ingredients=" + separatedIngredientsForUrl + "&limitLicense=" + limitLicense.description + "&number=" + String(number) + "&ranking=" + String(ranking)
-        print (urlString)
         let request = NSMutableURLRequest(url: NSURL(string: urlString)! as URL)
         request.addValue("kX0oe5UPsGmsh4IvUqlXBP1Gr6USp1Oub8SjsnmwjLrnCRGq8x",forHTTPHeaderField: "X-Mashape-Key")
         request.addValue("application/json",forHTTPHeaderField: "Accept")
@@ -186,10 +158,8 @@ class PullCalls {
         request.httpMethod = "GET"
         let tache = session.dataTask(with: request as URLRequest) { (data, response, error) -> Void in
             if let jsonData = data {
-                print(jsonData)
                 let json = JSONDecoder()
                 guard let search = try? json.decode([Recipe].self, from: jsonData) else {
-                    print("nil search value")
                     return
                 }
                 for recipe in search{
@@ -217,7 +187,6 @@ class PullCalls {
         request.httpMethod = "GET"
         let tache = session.dataTask(with: request as URLRequest) { (data, response, error) -> Void in
             if let jsonData = data {
-                print(jsonData)
                 let json = JSONDecoder()
                 thisRecipeDetails = try? json.decode(RecipeDetails.self, from: jsonData)
                 DispatchQueue.main.async {

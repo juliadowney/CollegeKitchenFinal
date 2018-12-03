@@ -18,7 +18,6 @@ class myRecipeVC: UIViewController, UICollectionViewDataSource, UICollectionView
     var savedRecipesArray: [RecipeDetails] = []  //Array of Recipe Details - Ones that will be saved
     
     
-    
     //Set up collection view
     func setUpCollectionView(){
         myRecipeCollectionView.dataSource = self
@@ -38,11 +37,11 @@ class myRecipeVC: UIViewController, UICollectionViewDataSource, UICollectionView
         for data in savedArray{
             let input = try! JSONDecoder().decode(RecipeDetails.self, from: data)
             savedRecipesArray.append(input)
-            print(input.title)
             getRecipeImages(imageArray: savedRecipesArray)
         }
     }
     
+    //Get recipe images and put into image cache
     func getRecipeImages(imageArray: [RecipeDetails]){
         recipeImageCache = []
         for item in imageArray{
@@ -104,9 +103,7 @@ class myRecipeVC: UIViewController, UICollectionViewDataSource, UICollectionView
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+      
     }
-    
-
 
 }

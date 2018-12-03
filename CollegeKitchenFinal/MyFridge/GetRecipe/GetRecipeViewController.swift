@@ -32,7 +32,6 @@ class GetRecipeViewController: UIViewController, UITableViewDataSource, UITableV
 
         getRecipe()
         theTableView.rowHeight = 70
-        print (getRecipeArray.count)
         
     }
     
@@ -109,24 +108,18 @@ class GetRecipeViewController: UIViewController, UITableViewDataSource, UITableV
     var thisRecipeDetails:RecipeDetails!
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        print("above dispatch")
         activityIndicator.startAnimating()
 
             DispatchQueue.global(qos: .userInitiated).async {
-                print("in dispatch")
+            
                 self.pull.getRecipeDetails(id: self.getRecipeArray[indexPath.row].id){ pullRecipeDetails in
-                    print("*************************************")
-                    print(pullRecipeDetails)
                     if(pullRecipeDetails != nil){
                         self.thisRecipeDetails = pullRecipeDetails
-                        print("got pull")
+                        
                         DispatchQueue.main.async {
                             
                             self.theTableView.reloadData()
                             
-                            print ("in main")
-                            print (self.thisRecipeDetails)
-                            print("^^^^^^^^^^^^^^^^^^^^")
                             let vc = RecipeDetailsViewController()
                             vc.currentRecipeDetails = self.thisRecipeDetails
                             vc.saved = false
@@ -139,16 +132,7 @@ class GetRecipeViewController: UIViewController, UITableViewDataSource, UITableV
                         webVC.recipe = self.getRecipeArray[indexPath.row]
                         self.navigationController?.pushViewController(webVC, animated: true)
                     }
-                    
-                
-               
                 }
             }
-        
-     
         }
-  
-    
-    
-    
 }

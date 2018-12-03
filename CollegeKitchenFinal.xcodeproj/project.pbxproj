@@ -23,7 +23,6 @@
 		6CB03CAD21A8E68A00530BA9 /* myFridgeTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CB03CAC21A8E68A00530BA9 /* myFridgeTableViewCell.swift */; };
 		6CB03CAF21A9CB8D00530BA9 /* GetRecipeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CB03CAE21A9CB8D00530BA9 /* GetRecipeViewController.swift */; };
 		6CB03CB121A9D3EF00530BA9 /* GetRecipeTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CB03CB021A9D3EF00530BA9 /* GetRecipeTableViewCell.swift */; };
-		6CC6333021B1BFB600456721 /* LoadingScreenView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CC6332F21B1BFB600456721 /* LoadingScreenView.swift */; };
 		6CDFCA9721B4C032009079FE /* myRecipeVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CDFCA9621B4C031009079FE /* myRecipeVC.swift */; };
 		6CDFCA9921B4C57D009079FE /* WebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CDFCA9821B4C57D009079FE /* WebViewController.swift */; };
 		6CFFBA9B21A3C8DB00CD27D0 /* PullCalls.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CFFBA9A21A3C8DB00CD27D0 /* PullCalls.swift */; };
@@ -35,7 +34,6 @@
 		7B3F14BC21A2018300A235E2 /* CollegeKitchenFinalTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B3F14BB21A2018300A235E2 /* CollegeKitchenFinalTests.swift */; };
 		7B3F14C721A2018300A235E2 /* CollegeKitchenFinalUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B3F14C621A2018300A235E2 /* CollegeKitchenFinalUITests.swift */; };
 		7B4549CC21B0DBBB00E1B551 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7B4549CB21B0DBBA00E1B551 /* Assets.xcassets */; };
-		7B4549D221B0DE6600E1B551 /* MyProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B4549D121B0DE6600E1B551 /* MyProfileViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -56,8 +54,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		6C496B0021ACE2100052F796 /* RecipeDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = RecipeDetailsViewController.swift; path = CollegeKitchenFinal/RecipeDetailsViewController.swift; sourceTree = "<group>"; };
-		6C496B0121ACE2100052F796 /* RecipeDetailsViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = RecipeDetailsViewController.xib; path = CollegeKitchenFinal/RecipeDetailsViewController.xib; sourceTree = "<group>"; };
+		6C496B0021ACE2100052F796 /* RecipeDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeDetailsViewController.swift; sourceTree = "<group>"; };
+		6C496B0121ACE2100052F796 /* RecipeDetailsViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RecipeDetailsViewController.xib; sourceTree = "<group>"; };
 		6C8F5D1D21A204F80042C090 /* IngredientSearch.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IngredientSearch.swift; sourceTree = "<group>"; };
 		6C8F5D1F21A204F80042C090 /* EstimatedCostAPI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EstimatedCostAPI.swift; sourceTree = "<group>"; };
 		6C8F5D2021A204F80042C090 /* Joke.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Joke.swift; sourceTree = "<group>"; };
@@ -72,7 +70,6 @@
 		6CB03CAC21A8E68A00530BA9 /* myFridgeTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = myFridgeTableViewCell.swift; sourceTree = "<group>"; };
 		6CB03CAE21A9CB8D00530BA9 /* GetRecipeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetRecipeViewController.swift; sourceTree = "<group>"; };
 		6CB03CB021A9D3EF00530BA9 /* GetRecipeTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetRecipeTableViewCell.swift; sourceTree = "<group>"; };
-		6CC6332F21B1BFB600456721 /* LoadingScreenView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingScreenView.swift; sourceTree = "<group>"; };
 		6CDFCA9621B4C031009079FE /* myRecipeVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = myRecipeVC.swift; path = CollegeKitchenFinal/myRecipeVC.swift; sourceTree = SOURCE_ROOT; };
 		6CDFCA9821B4C57D009079FE /* WebViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebViewController.swift; sourceTree = "<group>"; };
 		6CFFBA9A21A3C8DB00CD27D0 /* PullCalls.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PullCalls.swift; sourceTree = "<group>"; };
@@ -90,7 +87,6 @@
 		7B3F14C621A2018300A235E2 /* CollegeKitchenFinalUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollegeKitchenFinalUITests.swift; sourceTree = "<group>"; };
 		7B3F14C821A2018300A235E2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		7B4549CB21B0DBBA00E1B551 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Assets.xcassets; path = CollegeKitchenFinal/Assets.xcassets; sourceTree = SOURCE_ROOT; };
-		7B4549D121B0DE6600E1B551 /* MyProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = MyProfileViewController.swift; path = CollegeKitchenFinal/MyProfileViewController.swift; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -173,8 +169,6 @@
 		7B3F149A21A2018200A235E2 = {
 			isa = PBXGroup;
 			children = (
-				6C496B0021ACE2100052F796 /* RecipeDetailsViewController.swift */,
-				6C496B0121ACE2100052F796 /* RecipeDetailsViewController.xib */,
 				7B3F14A521A2018200A235E2 /* CollegeKitchenFinal */,
 				7B3F14BA21A2018300A235E2 /* CollegeKitchenFinalTests */,
 				7B3F14C521A2018300A235E2 /* CollegeKitchenFinalUITests */,
@@ -199,16 +193,16 @@
 				6CB03CA821A61ED300530BA9 /* myBudget */,
 				6CB03CA521A5256800530BA9 /* MyFridge */,
 				6C8F5D2021A204F80042C090 /* Joke.swift */,
-				7B4549D121B0DE6600E1B551 /* MyProfileViewController.swift */,
 				6CFFBA9A21A3C8DB00CD27D0 /* PullCalls.swift */,
 				6CDFCA9821B4C57D009079FE /* WebViewController.swift */,
+				6C496B0021ACE2100052F796 /* RecipeDetailsViewController.swift */,
+				6C496B0121ACE2100052F796 /* RecipeDetailsViewController.xib */,
 				7B3F14A621A2018200A235E2 /* AppDelegate.swift */,
-				7B4549CB21B0DBBA00E1B551 /* Assets.xcassets */,
 				7B3F14A821A2018200A235E2 /* ViewController.swift */,
 				7B3F14AA21A2018200A235E2 /* Main.storyboard */,
+				7B4549CB21B0DBBA00E1B551 /* Assets.xcassets */,
 				7B3F14B221A2018300A235E2 /* Info.plist */,
 				6CB03CAA21A8DB5300530BA9 /* UserStorage.plist */,
-				6CC6332F21B1BFB600456721 /* LoadingScreenView.swift */,
 			);
 			path = CollegeKitchenFinal;
 			sourceTree = "<group>";
@@ -365,11 +359,9 @@
 			files = (
 				6CB03CAD21A8E68A00530BA9 /* myFridgeTableViewCell.swift in Sources */,
 				7B3F14A921A2018200A235E2 /* ViewController.swift in Sources */,
-				7B4549D221B0DE6600E1B551 /* MyProfileViewController.swift in Sources */,
 				6C8F5D2C21A204F90042C090 /* Joke.swift in Sources */,
 				6C8F5D3421A204F90042C090 /* ConvertedAmount.swift in Sources */,
 				6C8F5D2921A204F90042C090 /* IngredientSearch.swift in Sources */,
-				6CC6333021B1BFB600456721 /* LoadingScreenView.swift in Sources */,
 				6C8F5D2E21A204F90042C090 /* RecipeDetails.swift in Sources */,
 				7B3F14A721A2018200A235E2 /* AppDelegate.swift in Sources */,
 				6C8F5D2F21A204F90042C090 /* EstimatedCost.swift in Sources */,

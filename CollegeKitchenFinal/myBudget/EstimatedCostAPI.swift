@@ -10,5 +10,4 @@ import Foundation
 
 struct EstimatedCostAPI:Codable{
     let estimatedCost:EstimatedCost
-    // hello
 }

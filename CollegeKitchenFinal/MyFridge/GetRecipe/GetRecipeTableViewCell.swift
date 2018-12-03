@@ -21,15 +21,12 @@ class GetRecipeTableViewCell: UITableViewCell {
     
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
-        
-        // Configure the view for the selected state
     }
     
     func displayCell(recipeName:String, recipeImageString:String){
         recipeTitle.text = recipeName.capitalized
         
         let imageName  =  recipeImageString
-        print (imageName)
         
         let imageURL = URL(string:imageName)
         let data = NSData(contentsOf: imageURL!)

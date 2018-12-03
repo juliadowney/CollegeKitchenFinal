@@ -26,18 +26,14 @@ class MyBudgetViewController: UIViewController {
     @IBOutlet weak var addSubSelector: UISegmentedControl!
     @IBOutlet weak var editBudEntry: UITextField!
     
- 
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         displayBudget()
         backgroundView.isHidden = true
         editBudPopUp.isHidden = true
-      //  view.backgroundColor = UIColor(red: 182/255, green: 204/255, blue: 216/255, alpha: 1)
         budgetValLabel.textColor = UIColor(red: 31/255, green: 35/255, blue: 63/255, alpha: 1)
         spentValLabel.textColor = UIColor(red: 31/255, green: 35/255, blue: 63/255, alpha: 1)
         availValLabel.textColor = UIColor(red: 31/255, green: 35/255, blue: 63/255, alpha: 1)
-        // Do any additional setup after loading the view.
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -46,7 +42,6 @@ class MyBudgetViewController: UIViewController {
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
     }
  
     
@@ -60,7 +55,6 @@ class MyBudgetViewController: UIViewController {
             backgroundView.isHidden = true
             editBudPopUp.isHidden = true
             view.endEditing(true)
-
         }
         else {
             if (addSubSelector.selectedSegmentIndex == 0){
@@ -88,22 +82,14 @@ class MyBudgetViewController: UIViewController {
                     availValue = budgetValue - spentValue
                     dict.setValue(availValue, forKey: "availVal")
                     dict.write(toFile: path!, atomically: true)
-                displayBudget()
-                backgroundView.isHidden = true
-               editBudPopUp.isHidden = true
+                    displayBudget()
+                    backgroundView.isHidden = true
+                    editBudPopUp.isHidden = true
                     view.endEditing(true)
-
                 }
-                
             }
-           
-      
-            
         }
-        
-       
     }
-    
     
     func displayBudget(){
         let path = Bundle.main.path(forResource: "UserStorage", ofType: "plist")
@@ -115,16 +101,4 @@ class MyBudgetViewController: UIViewController {
         spentValLabel.text = "$" + String(format:"%.2f", spentValue)
         availValLabel.text = "$" + String(format:"%.2f", availValue)
     }
-
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
 }

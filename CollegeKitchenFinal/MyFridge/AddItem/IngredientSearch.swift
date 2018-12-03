@@ -11,7 +11,6 @@ import Foundation
 struct IngredientSearch: Codable {
     let name:String
     let image:String
-   
 }
 
 

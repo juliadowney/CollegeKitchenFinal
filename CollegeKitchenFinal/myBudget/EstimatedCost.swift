@@ -11,5 +11,4 @@ import Foundation
 struct EstimatedCost:Codable{
     let value:Double
     let unit:String
-    // hello
 }

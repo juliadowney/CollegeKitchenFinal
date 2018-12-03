@@ -13,7 +13,6 @@ class AddItemTableViewCell: UITableViewCell {
     @IBOutlet weak var addItemImage: UIImageView!
     @IBOutlet weak var addItemLabel: UILabel!
     
-    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
@@ -21,16 +20,12 @@ class AddItemTableViewCell: UITableViewCell {
 
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
-
-        // Configure the view for the selected state
     }
     
     func displayCell(searchName:String, searchImage:String){
         addItemLabel.text = searchName.capitalized
         
         let imageName  = "https://spoonacular.com/cdn/ingredients_100x100/" + searchImage
-        print (imageName)
-        
         let imageURL = URL(string:imageName)
         if let data = NSData(contentsOf: imageURL!) {
             addItemImage.image =  UIImage(data: data as Data)
@@ -39,5 +34,4 @@ class AddItemTableViewCell: UITableViewCell {
             addItemImage.image = UIImage(named: "budget")
         }
     }
-
 }
