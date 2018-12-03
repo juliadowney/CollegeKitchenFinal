@@ -16,7 +16,7 @@ class MyBudgetViewController: UIViewController {
     var spentValue:Double = 0
     var availValue:Double = 0
     
-
+    var firstBudget:Bool!
     @IBOutlet weak var budgetValLabel: UILabel!
     @IBOutlet weak var spentValLabel: UILabel!
     @IBOutlet weak var availValLabel: UILabel!
@@ -26,15 +26,12 @@ class MyBudgetViewController: UIViewController {
     @IBOutlet weak var addSubSelector: UISegmentedControl!
     @IBOutlet weak var editBudEntry: UITextField!
     
-    @IBOutlet weak var resetBudPopUp: UIView!
-    @IBOutlet weak var resetBudEntry: UITextField!
-    
+ 
     
     override func viewDidLoad() {
         super.viewDidLoad()
         displayBudget()
         backgroundView.isHidden = true
-        resetBudPopUp.isHidden = true
         editBudPopUp.isHidden = true
       //  view.backgroundColor = UIColor(red: 182/255, green: 204/255, blue: 216/255, alpha: 1)
         budgetValLabel.textColor = UIColor(red: 31/255, green: 35/255, blue: 63/255, alpha: 1)
@@ -51,11 +48,7 @@ class MyBudgetViewController: UIViewController {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-    @IBAction func resetBudget(_ sender: Any) {
-        backgroundView.isHidden = false
-        resetBudPopUp.isHidden = false
-        
-    }
+ 
     
     @IBAction func editBudget(_ sender: Any) {
         backgroundView.isHidden=false
@@ -66,6 +59,8 @@ class MyBudgetViewController: UIViewController {
         if (editBudEntry.text == ""){
             backgroundView.isHidden = true
             editBudPopUp.isHidden = true
+            view.endEditing(true)
+
         }
         else {
             if (addSubSelector.selectedSegmentIndex == 0){
@@ -80,6 +75,8 @@ class MyBudgetViewController: UIViewController {
                 displayBudget()
                 backgroundView.isHidden = true
                 editBudPopUp.isHidden = true
+                view.endEditing(true)
+
             }
             else {
                 if (budgetValue - (NumberFormatter().number(from: editBudEntry.text!)?.doubleValue)! > 0){
@@ -94,6 +91,8 @@ class MyBudgetViewController: UIViewController {
                 displayBudget()
                 backgroundView.isHidden = true
                editBudPopUp.isHidden = true
+                    view.endEditing(true)
+
                 }
                 
             }
@@ -116,30 +115,7 @@ class MyBudgetViewController: UIViewController {
         spentValLabel.text = "$" + String(format:"%.2f", spentValue)
         availValLabel.text = "$" + String(format:"%.2f", availValue)
     }
-    
-    @IBAction func doneResetBudget(_ sender: Any) {
-        
-        if (resetBudEntry.text == ""){
-            backgroundView.isHidden = true
-            resetBudPopUp.isHidden = true
-        }
-        else{
-            budgetValue = (NumberFormatter().number(from: resetBudEntry.text!)?.doubleValue)!
-            spentValue = 0.0
-            let path = Bundle.main.path(forResource: "UserStorage", ofType: "plist")
-            let dict = NSMutableDictionary(contentsOfFile: path!)!
-            dict.setValue(budgetValue, forKey: "budgetVal")
-            dict.setValue(spentValue, forKey: "spentVal")
-            availValue = budgetValue - spentValue
-            dict.setValue(availValue, forKey: "availVal")
-            dict.write(toFile: path!, atomically: true)
-            displayBudget()
-            backgroundView.isHidden = true
-            resetBudPopUp.isHidden = true
-        }
-        
-    }
-    
+
 
     /*
     // MARK: - Navigation

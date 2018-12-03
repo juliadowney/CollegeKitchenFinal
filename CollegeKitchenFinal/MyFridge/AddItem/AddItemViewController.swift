@@ -17,7 +17,9 @@ class AddItemViewController: UIViewController, UISearchBarDelegate, UITableViewD
     var searchIngredients:[IngredientSearch] = [] // the array where the current searchedIngredients are stored
     let activityIndicator = UIActivityIndicatorView(activityIndicatorStyle: .whiteLarge)
     let waitingJoke = UILabel()
-
+    var buttonColor:UIColor!
+    @IBOutlet weak var addItemButton: UIButton!
+    @IBOutlet weak var selectButton: UIButton!
     
     // ITEMS FOR POPUP WINDOW WHEN YOU CLICK AN ITEM TO ADD TO FRIDGE
     @IBOutlet weak var backgroundWindow: UIView! // the view that pops up to darken the background
@@ -52,30 +54,51 @@ class AddItemViewController: UIViewController, UISearchBarDelegate, UITableViewD
  */
     @IBAction func selectUnit(_ sender: Any) {
         
+        quantityText.isEnabled = false
         unitPicker.isHidden = false // unhides picker
-        self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Done", style: .done, target: self, action: #selector(closePicker)) // adds a Done button to the nav bar so we know when user is done selecting
+       // self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Done", style: .done, target: self, action: #selector(closePicker)) // adds a Done button to the nav bar so we know when user is done selecting
+     
     }
     
     /*
      closePicker is called when a user is done using picker and selects 'Done' in nav bar
      */
     @objc func closePicker(){
+        quantityText.isEnabled = true
         unitPicker.isHidden = true // hides the picker
         popUpWindow.isUserInteractionEnabled = true // re-enables the popup window
         self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Cancel", style: .done, target: self, action: #selector(cancelAddItem)) // hides the Done button on the nav bar
-        
+       
     }
     
     //EDITING QUANTITY
     
     @IBAction func editingQuantity(_ sender: Any) {
+        unitText.isEnabled = false
+        selectButton.isEnabled = false
         self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Done", style: .done, target: self, action: #selector(doneEditingQuantity))
+        if (quantityText.text != "" ){
+            addItemButton.backgroundColor = buttonColor
+        }
+        else {
+            addItemButton.backgroundColor = UIColor.darkGray
+        }
     }
     
     @objc func doneEditingQuantity(){
+        selectButton.isEnabled = true
+        unitText.isEnabled = true
         view.endEditing(true) // closes the keyboard
         self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Cancel", style: .done, target: self, action: #selector(cancelAddItem)) // hides the Done button on the nav bar
+        if (quantityText.text != ""){
+            addItemButton.backgroundColor = buttonColor
+            addItemButton.isEnabled = true
+        }
+        else {
+            addItemButton.backgroundColor = UIColor.darkGray
+            addItemButton.isEnabled = false
 
+        }
     }
     
     
@@ -217,7 +240,8 @@ class AddItemViewController: UIViewController, UISearchBarDelegate, UITableViewD
     
     // when user clicks a cell
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        
+        addItemButton.isEnabled = false
+        addItemButton.backgroundColor = UIColor.darkGray
          self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Cancel", style: .done, target: self, action: #selector(cancelAddItem))
         navigationItem.hidesBackButton = true
         theTableView.cellForRow(at: indexPath)?.isSelected = false // ends selecting of cell
@@ -261,7 +285,8 @@ class AddItemViewController: UIViewController, UISearchBarDelegate, UITableViewD
     override func viewDidLoad() {
         
         super.viewDidLoad()
-       
+        buttonColor = addItemButton.backgroundColor
+
         backgroundWindow.isHidden = true
         backgroundWindow.isUserInteractionEnabled = false
         popUpWindow.isHidden=true
@@ -286,11 +311,13 @@ class AddItemViewController: UIViewController, UISearchBarDelegate, UITableViewD
         let dict = NSMutableDictionary(contentsOfFile: path!)!
         let budgetValue = dict.object(forKey: "budgetVal") as! Double
        
-        let alert = UIAlertController(title: "Missing Budget", message: "Please go to the myBudget tab and enter a budget before adding items to your fridge", preferredStyle: .alert)
+        let alert = UIAlertController(title: "Missing Budget", message: "Please go to the myBudget tab and enter a budget before adding items to your fridge.", preferredStyle: .alert)
         
         alert.addAction(UIAlertAction(title: "OK", style: .default, handler: { _ in
-            let uivc = self.storyboard!.instantiateViewController(withIdentifier: "myBudgetController")
-            self.navigationController!.pushViewController(uivc, animated: true)
+            //let uivc = self.storyboard!.instantiateViewController(withIdentifier: "myBudgetController")
+            self.tabBarController?.selectedIndex = 2
+           //let uivc = MyBudgetViewController()
+           // self.navigationController!.pushViewController(uivc, animated: true)
         }))
         
         
