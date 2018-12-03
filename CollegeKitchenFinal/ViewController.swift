@@ -198,6 +198,8 @@ class ViewController: UIViewController {
         let path = Bundle.main.path(forResource: "UserStorage", ofType: "plist")
         let dict = NSMutableDictionary(contentsOfFile: path!)!
         let currentList = dict.object(forKey: "myFridge") as! Array<Data>
+        let recipeList = dict.object(forKey: "myRecipe") as! Array<Data>
+        receipieNum.text = String(recipeList.count)
         fridgeNum.text = String(currentList.count)
         budgetCurr.text = "$" + String(dict.object(forKey: "budgetVal") as! Double)
         
@@ -208,6 +210,8 @@ class ViewController: UIViewController {
         let path = Bundle.main.path(forResource: "UserStorage", ofType: "plist")
         let dict = NSMutableDictionary(contentsOfFile: path!)!
         let currentList = dict.object(forKey: "myFridge") as! Array<Data>
+        let recipeList = dict.object(forKey: "myRecipe") as! Array<Data>
+        receipieNum.text = String(recipeList.count)
         fridgeNum.text = String(currentList.count)
         budgetCurr.text = "$"+String(dict.object(forKey: "budgetVal") as! Double)
         //once recipe works do that one too
